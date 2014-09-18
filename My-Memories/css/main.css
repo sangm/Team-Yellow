@@ -1,3 +1,7 @@
+.inner-wrap, .off-canvas-wrap {
+    height: 100%;
+}
+
 .full {
     width: 100%;
 }
