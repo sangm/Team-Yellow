@@ -1,0 +1,28 @@
+<!--
+	This lets the user decide what the <head> -> <title> element will be
+-->
+
+<!DOCTYPE html>
+<html lang="en-US" ng-app="myApp" ng-controller="PageCtrl">
+	<head>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+		<script src="myApp.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script>
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.css" />
+		<title>{{pg.title}}</title>
+	</head>
+	<body>
+		<form ng-controller="TitleFormCtrl" ng-submit="changeTitle()" ng-show="status">
+			Title: <input type="text" ng-model="title" />
+			<input type="submit" value="Submit" />
+		</form>	
+<!--		
+		<div ng-controller="HeaderFormCtrl" ng-show="status">
+			<h4>Header Form</h4>
+			<form ng-submit="submitHeader()">
+				Peview header: <input type="checkbox" ng-model="previewHeaderValue">
+			</form>
+		</div>	<!-- /HeaderFormCtrl	-->
+	</body>
+</html>
