@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+
+.menuItem {
+
+}
+
+.menuDropDown {
+	background-color: #A7DBD8;
+}
+
+.menuDropDown p {
+	text-align: justify;
+	margin-left: rem-calc(30);
+	margin-right: rem-calc(30);
+}
+
+form {
+	margin-left: rem-calc(60);
+	margin-right: rem-calc(60);
+	background-color: #E0E4CC;
+}
+
+legend {
+	width: rem-calc(265);
+	background-color: #69D2E7;
+	font-style: oblique;
+}
+
+label {
+	background-color: #E0E4CC;
+}
+
+.submitButton {
+  @include button($button-med, #A7DBD8, 100px, false, false,false);
+}
