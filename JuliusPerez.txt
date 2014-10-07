@@ -1,1 +1,0 @@
-This text file is just a test to commit to master repository
