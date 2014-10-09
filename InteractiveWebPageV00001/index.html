@@ -29,9 +29,7 @@
 
 
 
-						<a class="menuItem" ng-click="setTab(1)">
-							Page Title
-						</a>
+						<a ng-click="setTab(1)">Page Title</a>
 							<div class="menuDropDown" ng-show="isSet(1)">
 								<p class="infoBox">
 									The page title does four things. The page text that is 
@@ -45,22 +43,30 @@
 									<legend>Page Title</legend>
 										<fieldset>
 											<label for="pageTitle">Title:</label>
-											<input type="text" id="pageTitle" name="pageTitle" 
+											<input class="radius" type="text" id="pageTitle" name="pageTitle" 
 														 placeholder="Page Title" ng-model="title" />
+											<input class="button round formSubmit" type="submit" 
+													 value="Submit" />
 										</fieldset>
-										<input type="submit" value="Submit" />
 							</form>
 						</div> <!-- end menuDropDown -->
-
-
-
-
-
-
-
 					</li> <!-- end Title tab -->
+
+
+
+
 					<li>
-						<a ng-click="setTab(2)">Header</a></li>
+						<a ng-click="setTab(2)">Header</a>
+						<div class="menuDropDown" ng-show="isSet(2)">
+							<input type="button" name="Create new row" />
+						</div>
+					</li>
+
+
+
+
+
+
 					<li>
 						<a ng-click="setTab(3)">Section 3</a></li>
 				</ul>	<!-- end off-canvas-list -->

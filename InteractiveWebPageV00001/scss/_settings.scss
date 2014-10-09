@@ -93,7 +93,14 @@ $include-html-global-classes: $include-html-classes;
 
 // We use these to define default font weights
 // $font-weight-normal: normal;
-// $font-weight-bold: bold !default;
+$font-weight-bold: bold !default;
+
+// Color Scheme
+$aoi							 : #69D2E7;
+$clean-pondwater	 : #A7DBD8;
+$beach-storm			 : #E0E4CC;
+$giant-goldfish		 : #F38630;
+$unreal-food-pills : #FA6900;
 
 // We use these as default colors throughout
 // $primary-color: #008CBA;
@@ -102,9 +109,10 @@ $include-html-global-classes: $include-html-classes;
 // $success-color: #43AC6A;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
-$nav-color: #FA6900;
+$nav-color: $unreal-food-pills;
 
-// $white       : #FFFFFF;
+// Basic Colors
+$white       : #FFFFFF;
 // $ghost       : #FAFAFA;
 // $snow        : #F9F9F9;
 // $vapor       : #F6F6F6;
@@ -122,7 +130,7 @@ $nav-color: #FA6900;
 // $tuatara     : #444444;
 // $oil         : #333333;
 // $jet         : #222222;
-// $black       : #000000;
+$black       : #000000;
 
 // We use these to control various global styles
 // $body-bg: $white;
@@ -141,7 +149,7 @@ $nav-color: #FA6900;
 // $last-child-float: $opposite-direction;
 
 // We use these to make sure border radius matches unless we want it different.
-// $global-radius: 3px;
+$global-radius: 1000px;
 // $global-rounded: 1000px;
 
 // We use these to control inset shadow shiny edges and depressions.
@@ -448,7 +456,7 @@ $nav-color: #FA6900;
 // We use these to control button border and hover styles.
 // $button-border-width: 0px;
 // $button-border-style: solid;
-// $button-bg-color: $primary-color;
+$button-bg-color: $beach-storm;
 // $button-bg-hover: scale-color($button-bg-color, $lightness: $button-function-factor);
 // $button-border-color: $button-bg-hover;
 // $secondary-button-bg-hover: scale-color($secondary-color, $lightness: $button-function-factor);
@@ -621,7 +629,7 @@ $nav-color: #FA6900;
 // $form-label-font-weight: $font-weight-normal;
 $form-label-font-weight: $font-weight-bold;
 // $form-label-line-height: 1.5;
-// $form-label-font-color: scale-color($black, $lightness: 30%);
+$form-label-font-color: scale-color($black, $lightness: 0%);
 // $form-label-small-transform: capitalize;
 // $form-label-bottom-margin: 0;
 $form-label-bottom-margin: rem-cal(3);
@@ -642,17 +650,16 @@ $input-bg-color: $white;
 // $input-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
 
 // We use these to style the fieldset border and spacing.
-// $fieldset-border-style: solid;
-// $fieldset-border-width: 1px;
-// $fieldset-border-width: 0em;
-// $fieldset-border-color: $gainsboro;
-// $fieldset-padding: rem-calc(20);
-// $fieldset-margin: rem-calc(18 0);
+$fieldset-border-style: none;
+// $fieldset-border-width: rem-calc(2);
+// $fieldset-border-color: $black;
+$fieldset-padding: rem-calc(5);
+$fieldset-margin: rem-calc(0);
 
 // We use these to style the legends when you use them
-// $legend-bg: $white;
+// $legend-bg: #69D2E7;
 // $legend-font-weight: $font-weight-bold;
-// $legend-padding: rem-calc(0 3);
+// $legend-padding: rem-calc(5);
 
 // We use these to style the prefix and postfix input elements
 // $input-prefix-bg: scale-color($white, $lightness: -5%);
@@ -827,20 +834,18 @@ $tabbar-bg: $nav-color;
 // $tabbar-header-margin: 0;
 
 // Off Canvas Menu Variables
-// $off-canvas-width: rem-calc(250);
 $off-canvas-width: rem-calc(400);
-// $off-canvas-bg: $oil;
 $off-canvas-bg: $nav-color;
 // $off-canvas-bg-hover: scale-color($tabbar-bg, $lightness: -30%);
 
 // Off Canvas Menu List Variables
-// $off-canvas-label-padding: 0.3rem rem-calc(15);
-// $off-canvas-label-color: $aluminum;
+$off-canvas-label-padding: rem-calc(10 0);
+$off-canvas-label-color: $black;
 // $off-canvas-label-text-transform: uppercase;
 // $off-canvas-label-font-size: rem-calc(12);
-// $off-canvas-label-font-weight: $font-weight-bold;
+$off-canvas-label-font-weight: $font-weight-bold;
 // $off-canvas-label-bg: $tuatara;
-// $off-canvas-label-border-top: 1px solid scale-color($tuatara, $lightness: 14%);
+$off-canvas-label-border-top: none;
 //$off-canvas-label-border-top: 5px solid scale-color($my-green, $lightness: 14%);
 // $off-canvas-label-border-bottom: none;
 // $off-canvas-label-margin:0;
