@@ -1,47 +1,113 @@
 @charset "utf-8";
 /* CSS Document */
 
-// Color Scheme
-$aoi							 : #69D2E7;
-$clean-pondwater	 : #A7DBD8;
-$beach-storm			 : #E0E4CC;
-$giant-goldfish		 : #F38630;
-$unreal-food-pills : #FA6900;
+// a. Global
+// - - - - - - - - - - - - - - - - - - - - - - - - -
 
+	// We use these to define default font weights
+	$font-weight-normal: normal;
+	$font-weight-bold: bold !default;
+
+	// Color Scheme
+	$aoi							 : #69D2E7;
+	$clean-pondwater	 : #A7DBD8;
+	$beach-storm			 : #E0E4CC;
+	$giant-goldfish		 : #F38630;
+	$unreal-food-pills : #FA6900;
+	$nav-color: $unreal-food-pills;
+
+	// Basic Colors
+	$white       : #FFFFFF;
+	$black       : #000000;
+
+	// We use these to make sure border radius matches unless we want it different.
+	$tab-radius: 10px;
+	$form-radius: 5px;
+	$rounded: 1000px;
+
+// 1. off-canvas-menu-items
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// We use thes to define default menu items drop down
 .menuDropDown {
 	background-color: $giant-goldfish;
-	margin-bottom: rem-calc(10);
+	padding-bottom: rem-calc(15);
 }
 
 .menuDropDown p {
 	text-align: justify;
+	margin: rem-calc(0 15 15);
+}
+
+// 2. off-canvas-forms
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.menuDropDown form {
 	margin: rem-calc(0 30);
+	background-color: $giant-goldfish;
 }
 
-form {
-	margin: rem-calc(0 60);
-	border-width: rem-calc(2);
-	border-style: ridge;
-	border-color: $black;
-	background-color: $aoi;
-}
-
-.centerAlign {
-	text-align: center;
-}
-
-legend {
+.menuDropDown form legend {
 	font-weight: bold;
-	padding: rem-calc(5 0);
-	text-align: center;
-
-}
-
-fieldset {
 	background-color: $clean-pondwater;
-	border-top: rem-calc(1) solid $black;
+	margin-left: rem-calc(15);
+	border-top-left-radius: $tab-radius;
+	border-top-right-radius: $tab-radius;
+	padding: rem-calc(0 10);
 }
 
-.formSubmit {
-	margin: rem-calc(0 67 10 67);
+.menuDropDown form fieldset {
+	background-color: $clean-pondwater;
+	border-radius: $form-radius;
+	padding: rem-calc(0 10 0 10);
+	margin: 0;
+	border-style: none;
+}
+
+.menuDropDown form label {
+	$font-weight: $font-weight-bold;
+}
+
+.menuDropDown form input[type="text"] {
+	border-radius: $global-rounded;
+}
+
+// 3. Buttons
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.menuDropDown form input[type="submit"] {
+	@include button(
+		$bg: scale-color($aoi, $lightness: -30%),
+		$radius: $global-rounded !important
+	);
+	margin: rem-calc(0 38 10 38);
+}
+
+// 4. Template Menu
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+.menuDropDown .templateForm fieldset {
+	padding-top: rem-calc(5);
+}
+
+.menuDropDown .templateForm fieldset .row {
+	padding: rem-calc(10 0 10);
+	vertical-align: middle;
+}
+
+.templateForm label {
+	padding: rem-calc(3 0) !important;
+	margin: rem-calc(0);
+	display: inline-block !important;
+	height: rem-calc(19);
+	vertical-align: middle;
+}
+
+.templateForm input[type="button"] {
+	@include button(
+		$bg: $beach-storm,
+		$radius: $global-rounded
+	);
+	padding: 0;
+	margin-bottom: 0;
 }

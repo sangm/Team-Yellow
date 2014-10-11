@@ -4,83 +4,54 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="stylesheet" type="text/css" href="stylesheets/app.css" />
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+	<script
+	 src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js">
+	</script>
 	<script src="js/myApp.js"></script>
-	<script type="text/javascript" src="bower_components/modernizr/modernizr.js"></script>
-	<title>{{pageTitle}}</title>
+	<script src="js/angular-route.min.js"></script>
+<!--	<script src="js/mainPage/controllers/TemplatesCtrl.js"></script> -->
+	<script src="js/offCanvas/directives/navTabBar.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/directives/templateMenu.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/bandedTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/bannerHomeTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/blogTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/contactTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/feedTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/gridTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/marketing1TemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/marketing2TemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/orbitHomeTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/productTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/realtyTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/sideBarTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/soBoxyTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/storeTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/templateMenu/templateList/directives/workspaceTemplateListItem.js"></script>
+	<script src="js/offCanvas/menuItems/titleMenu/directives/titleMenu.js"></script>
+	<title data-ng-bind="title"></title>
 </head>
 <body>
-	<div class="off-canvas-wrap" data-offcanvas>
+	<div class="off-canvas-wrap" data-offcanvas> <!-- move-right -->
 		<div class="inner-wrap">
-
-			<nav class="tab-bar"> <!-- creates header bar -->
-				<section class="left-small">
-					<a class="left-off-canvas-toggle menu-icon"><span></span></a>
-				</section>
-			</nav>
-
+			<nav-tab-bar></nav-tab-bar>
 			<aside class="left-off-canvas-menu" ng-controller="TabCtrl as tab">
 				<ul class="off-canvas-list">
-					<li>
-
-
-
-
-
-
-
-						<a ng-click="setTab(1)">Page Title</a>
-							<div class="menuDropDown" ng-show="isSet(1)">
-								<p class="infoBox">
-									The page title does four things. The page text that is 
-									displayed in a browser's tab on the browser toolbar. The 
-									page title is also displayed as the browser's title in the 
-									browsers title bar when the webpage is active. The page 
-									title also provides a default title for a webpage when the 
-									webpage is added to favorites. Finaly the page title is the 
-									tile displayed in search engine results. </p>
-								<form ng-controller="TitleCtrl" ng-submit="changeTitle()">
-									<legend>Page Title</legend>
-										<fieldset>
-											<label for="pageTitle">Title:</label>
-											<input class="radius" type="text" id="pageTitle" name="pageTitle" 
-														 placeholder="Page Title" ng-model="title" />
-											<input class="button round formSubmit" type="submit" 
-													 value="Submit" />
-										</fieldset>
-							</form>
-						</div> <!-- end menuDropDown -->
-					</li> <!-- end Title tab -->
-
-
-
-
-					<li>
-						<a ng-click="setTab(2)">Header</a>
-						<div class="menuDropDown" ng-show="isSet(2)">
-							<input type="button" name="Create new row" />
-						</div>
-					</li>
-
-
-
-
-
-
-					<li>
-						<a ng-click="setTab(3)">Section 3</a></li>
+					<li title-menu />
+					<li template-menu />
+					<li><a ng-click="setTab(3)">Section 3</a></li>
 				</ul>	<!-- end off-canvas-list -->
 			</aside>	<!-- end left-off-canvas-menu -->
 			<a class="exit-off-canvas"></a>	<!-- close off-canvas-menu -->
 
-			<p></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></p>
+																								<div style="height: 1000px" />
+
 
 		</div> <!-- end inner-wrap must go after all content -->
 	</div> <!-- end off-canvas -->
 	<script src="bower_components/foundation/js/vendor/jquery.js"></script>
 	<script src="bower_components/foundation/js/foundation.js"></script>
 	<script>
-	  $(document).foundation();
+		$(document).foundation();
 	</script>
 </body>
 </html>
