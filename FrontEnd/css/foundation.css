@@ -4689,7 +4689,7 @@ dialog {
 
 .tab-bar {
   -webkit-backface-visibility: hidden;
-  background: #333333;
+  background: #FA6900;
   color: white;
   height: 2.8125rem;
   line-height: 2.8125rem;
@@ -4767,7 +4767,7 @@ dialog {
   position: absolute;
   overflow-x: hidden;
   overflow-y: auto;
-  background: #333333;
+  background: #FA6900;
   z-index: 1001;
   box-sizing: content-box;
   transition: transform 500ms ease 0s;
