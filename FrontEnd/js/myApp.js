@@ -1,5 +1,6 @@
 var myApp = angular.module("myApp", [
 	'ngRoute',
+//	'templateControllers',
 	'myApp.directives.navTabBar',
 	'myApp.directives.titleMenu',
 	'myApp.directives.templateMenu'
@@ -96,23 +97,62 @@ var myApp = angular.module("myApp", [
 			myFactory.postTitle($scope.title);
 //			console.log('\tReturned to Title Controller change title function');
 		};
-	});
+	}).
 
-/*
-	.config(['$routeProvider',
+/*****************************************************************************/
+
+	config(['$routeProvider',
 		function($routeProvider) {
-			$routProvider.
-				when('/templates', {
-					templateUrl: 'partials/template-list.html',
-					controller: 'TemplateListCtrl'
+			$routeProvider.
+				when('/', {
+					templateUrl: 'partials/default-view.html'
 				}).
-				when('/templates/:templateId', {
-					templateUrl: 'partials/template-details.html',
-					controller: 'TemplateDetailCtrl'
+				when('/banded', {
+					templateUrl: 'partials/banded-demo.html'
+				}).
+				when('/banner-home', {
+					templateUrl: 'partials/banner-home-demo.html'
+				}).
+				when('/blog', {
+					templateUrl: 'partials/blog-demo.html'
+				}).
+				when('/contact', {
+					templateUrl: 'partials/contact-demo.html'
+				}).
+				when('/feed', {
+					templateUrl: 'partials/feed-demo.html'
+				}).
+				when('/grid', {
+					templateUrl: 'partials/grid-demo.html'
+				}).
+				when('/marketing1', {
+					templateUrl: 'partials/marketing1-demo.html'
+				}).
+				when('/marketing2', {
+					templateUrl: 'partials/marketing2-demo.html'
+				}).
+				when('/orbit', {
+					templateUrl: 'partials/orbit-demo.html'
+				}).
+				when('/product', {
+					templateUrl: 'partials/prodcuct-demo.html'
+				}).
+				when('/realty', {
+					templateUrl: 'partials/realty-demo.html'
+				}).
+				when('/side-bar', {
+					templateUrl: 'partials/side-bar-demo.html'
+				}).
+				when('/so-boxy', {
+					templateUrl: 'partials/so-boxy-demo.html'
+				}).
+				when('/store', {
+					templateUrl: 'partials/store-demo.html'
+				}).
+				when('/workspace', {
+					templateUrl: 'partials/workspace-demo.html'
 				}).
 				otherwise({
 					redirectTo: '/'
 				});
 		}]);
-*/
-//	Providers Routing
