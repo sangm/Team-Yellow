@@ -4,11 +4,11 @@ var myApp = angular.module("myApp", [
 	'myApp.directives.navTabBar',
 	'myApp.directives.titleMenu',
 	'myApp.directives.templateMenu'
-])
+]).
 
 /*****************************************************************************/
 
-	.factory('myFactory', function() {
+	factory('myFactory', function() {
 		var factory = {};
 		var pageInfo = {title: 'Page Title'};
 		var observerCallbacks = [];
@@ -47,11 +47,11 @@ var myApp = angular.module("myApp", [
 		};
 
 		return factory;
-	})
+	}).
 
 /*****************************************************************************/
 
-	.controller("PageCtrl", function($scope, myFactory) {
+	controller("PageCtrl", function($scope, myFactory) {
 //		console.log('Initial Page Controller Call');
 		$scope.title = myFactory.getTitle();
 //		console.log('\tPage Controller Title Now initialized to');
@@ -67,36 +67,6 @@ var myApp = angular.module("myApp", [
 
 		myFactory.registerObserverCallback(getPageTitle);
 
-	})
-
-/*****************************************************************************/
-
-	.controller("TabCtrl", function($scope) {
-		$scope.tabValue = -1;
-		$scope.setTab = function(setTab) {
-			if(setTab === $scope.tabValue){
-				$scope.tabValue = 2;
-				return;
-			}
-			$scope.tabValue = setTab;
-		};
-		$scope.isSet = function(tabClicked) {
-			if(tabClicked === $scope.tabValue) {
-				return true;
-			}
-		};
-	})
-
-/*****************************************************************************/
-
-	.controller("TitleCtrl", function($scope, myFactory) {
-		$scope.title = '';
-		$scope.changeTitle = function() {
-//			console.log('In title controller calling to change title to \'',
-//										$scope.title,'\'');
-			myFactory.postTitle($scope.title);
-//			console.log('\tReturned to Title Controller change title function');
-		};
 	}).
 
 /*****************************************************************************/
