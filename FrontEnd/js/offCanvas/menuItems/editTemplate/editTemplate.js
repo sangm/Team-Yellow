@@ -4,17 +4,31 @@ angular.module('myApp.directives.editTemplate', [
 	'mm.foundation.dropdownToggle'
 ]).
 
-
-
 ///////////////////////////////// Directives //////////////////////////////////
 	directive('editTemplate', function() {
 		return {
 			restrict: 'A',
 			templateUrl: "Templates/offCanvas/menuItems/editTemplate/edit-template-menu.html"
 		};
-	}).
+	})./********************** End editTemplate Directive **********************/
 
-/************************ End editTemplate Directive ************************/
+	directive("ngFileSelect",function(){
+
+		return {
+			link: function($scope,el){
+				
+				el.bind("change", function(e){
+				
+					$scope.file = (e.srcElement || e.target).files[0];
+					$scope.getFile();
+				})
+				
+			}
+			
+		}
+		
+	})./********************** End NgFileSelect Directive **********************/
+/******************************* End Factories *******************************/
 
 
 ////////////////////////////////// Factories //////////////////////////////////
@@ -54,7 +68,8 @@ angular.module('myApp.directives.editTemplate', [
 		}
 
 		return factory;
-	}).
+	}).	/*********************** End editTemplateFactory ***********************/
+
 /******************************* End Factories *******************************/
 
 
@@ -155,13 +170,12 @@ angular.module('myApp.directives.editTemplate', [
 
 	}).	/************************* End EditLinksCtrl ***************************/
 
-	/////////////////////////////// ImageCtrl ///////////////////////////////
+	/////////////////////////////// UploadCtrl ///////////////////////////////
 	controller('UploadCtrl', function ($scope, fileReader) {
 		console.log('Inside UploadController');
-		 console.log(fileReader)
 		$scope.getFile = function () {
 			$scope.progress = 0;
-			fileReader.readAsDataUrl($scope.file, $scope)
+			fileReader.readAsDataURL($scope.file, $scope)
 				.then(function(result) {
 					$scope.imageSrc = result;
 				});
@@ -171,4 +185,58 @@ angular.module('myApp.directives.editTemplate', [
 			$scope.progress = progress.loaded / progress.total;
 		});
 
+	});
+
+	///////////////////////////// fileReaderFactory /////////////////////////////
+	myApp.factory('fileReader', function($q, $log) {
+		console.log('fileReader Factory initialized');
+		var fileReader = function ($q, $log) {
+ 
+				var onLoad = function(reader, deferred, scope) {
+						return function () {
+								scope.$apply(function () {
+										deferred.resolve(reader.result);
+								});
+						};
+				};
+ 
+				var onError = function (reader, deferred, scope) {
+						return function () {
+								scope.$apply(function () {
+										deferred.reject(reader.result);
+								});
+						};
+				};
+ 
+				var onProgress = function(reader, scope) {
+						return function (event) {
+								scope.$broadcast("fileProgress",
+										{
+												total: event.total,
+												loaded: event.loaded
+										});
+						};
+				};
+ 
+				var getReader = function(deferred, scope) {
+						var reader = new FileReader();
+						reader.onload = onLoad(reader, deferred, scope);
+						reader.onerror = onError(reader, deferred, scope);
+						reader.onprogress = onProgress(reader, scope);
+						return reader;
+				};
+ 
+				var readAsDataURL = function (file, scope) {
+						var deferred = $q.defer();
+						 
+						var reader = getReader(deferred, scope);         
+						reader.readAsDataURL(file);
+						 
+						return deferred.promise;
+				};
+ 
+				return {
+						readAsDataUrl: readAsDataURL  
+				};
+		};
 	});
