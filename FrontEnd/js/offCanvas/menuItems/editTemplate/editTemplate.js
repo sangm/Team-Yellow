@@ -4,7 +4,10 @@ angular.module('myApp.directives.editTemplate', [
 	'mm.foundation.dropdownToggle'
 ]).
 
+
+///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// Directives //////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 	directive('editTemplate', function() {
 		return {
 			restrict: 'A',
@@ -12,26 +15,54 @@ angular.module('myApp.directives.editTemplate', [
 		};
 	})./********************** End editTemplate Directive **********************/
 
-	directive("ngFileSelect",function(){
-
+	directive('contenteditable', function() {
 		return {
-			link: function($scope,el){
-				
-				el.bind("change", function(e){
-				
-					$scope.file = (e.srcElement || e.target).files[0];
-					$scope.getFile();
-				})
-				
+			require: "ngModel",
+			link: function(scope, element, attrs, ngModel) {
+
+				function read() {
+					ngModel.$setViewValue(element.html());
+				}
+
+				ngModel.$render = function() {
+					element.html(ngModel.$viewValue || "");
+				};
+
+				element.bind("blur keyup change", function() {
+					scope.$apply(read);
+				});
 			}
+		};
+	}).
+
+
+	// directive("ngFileSelect",function(){
+
+	// 	return {
+	// 		link: function($scope,el){
+				
+	// 			el.bind("change", function(e){
+				
+	// 				$scope.file = (e.srcElement || e.target).files[0];
+	// 				$scope.getFile();
+	// 			})
+				
+	// 		}
 			
-		}
+	// 	}
 		
-	})./********************** End NgFileSelect Directive **********************/
+	// }).	/******************** End NgFileSelect Directive ***********************/
+
+/*****************************************************************************/
 /******************************* End Factories *******************************/
+/*****************************************************************************/
 
 
+
+
+///////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// Factories //////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 	factory('editTemplateFactory', function() {
 
 		//////////////////////////////// Variables ////////////////////////////////
@@ -70,10 +101,16 @@ angular.module('myApp.directives.editTemplate', [
 		return factory;
 	}).	/*********************** End editTemplateFactory ***********************/
 
+/*****************************************************************************/
 /******************************* End Factories *******************************/
+/*****************************************************************************/
 
 
+
+
+///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// Controllers /////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////// EditTemplateCtrl /////////////////////////////
 	controller('EditBandedTemplateCtrl', function($scope) {
@@ -169,74 +206,163 @@ angular.module('myApp.directives.editTemplate', [
 		};
 
 	}).	/************************* End EditLinksCtrl ***************************/
+	/***************************************************************************/
 
-	/////////////////////////////// UploadCtrl ///////////////////////////////
-	controller('UploadCtrl', function ($scope, fileReader) {
-		console.log('Inside UploadController');
-		$scope.getFile = function () {
-			$scope.progress = 0;
-			fileReader.readAsDataURL($scope.file, $scope)
-				.then(function(result) {
-					$scope.imageSrc = result;
-				});
+	/////////////////////////////////////////////////////////////////////////////
+	///////////////////////////// ContentSplitCtrl //////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
+	controller('ContentSplitCtrl', function($scope) {
+		$scope.contentSplit = {
+			heading: 'This is a split view content section.',
+			left: 'Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.',
+			right: 'Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.'
+		};
+		
+		$scope.editHeadingMode = false;
+		$scope.editHeadingBorder = 'none';
+
+		$scope.toggleHeadingEditMode = function() {
+			$scope.editHeadingMode = $scope.editHeadingMode === false ? true : false;
+			if($scope.editHeadingBorder == 'none') {
+				$scope.editHeadingBorder = 'border: solid lime 2px;';
+			} else {
+				$scope.editHeadingBorder = 'none';
+			}
 		};
 
-		$scope.$on("fileProgress", function(e, progress) {
-			$scope.progress = progress.loaded / progress.total;
-		});
+		$scope.editLeftMode = false;
+		$scope.editLeftBorder = 'none';
 
-	});
+		$scope.toggleLeftEditMode = function() {
+			$scope.editLeftMode = $scope.editLeftMode === false ? true : false;
+			if($scope.editLeftBorder == 'none') {
+				$scope.editLeftBorder = 'border: solid lime 2px;';
+			} else {
+				$scope.editLeftBorder = 'none';
+			}
+		};
+
+		$scope.editRightMode = false;
+		$scope.editRightBorder = 'none';
+
+		$scope.toggleRightEditMode = function() {
+			$scope.editRightMode = $scope.editRightMode === false ? true : false;
+			if($scope.editRightBorder == 'none') {
+				$scope.editRightBorder = 'border: solid lime 2px;';
+			} else {
+				$scope.editRightBorder = 'none';
+			}
+		};
+
+	}).	/************************* End ContentSplitCtrl ************************/
+	/***************************************************************************/
+
+	/////////////////////////////////////////////////////////////////////////////
+	////////////////////////      ContentSingleCtrl      ////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
+	controller('ContentSingleCtrl', function($scope) {
+		$scope.contentSingle = {
+			heading: 'This is a split view content section.',
+			content: 'Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.'
+		};
+		
+		$scope.editHeadingMode = false;
+		$scope.editHeadingBorder = 'none';
+
+		$scope.toggleHeadingEditMode = function() {
+			$scope.editHeadingMode = $scope.editHeadingMode === false ? true : false;
+			if($scope.editHeadingBorder == 'none') {
+				$scope.editHeadingBorder = 'border: solid lime 2px;';
+			} else {
+				$scope.editHeadingBorder = 'none';
+			}
+		};
+
+		$scope.editContentMode = false;
+		$scope.editContentBorder = 'none';
+
+		$scope.toggleContentEditMode = function() {
+			$scope.editContentMode = $scope.editContentMode === false ? true : false;
+			if($scope.editContentBorder == 'none') {
+				$scope.editContentBorder = 'border: solid lime 2px;';
+			} else {
+				$scope.editContentBorder = 'none';
+			}
+		};
+
+	});	/************************* End ContentSplitCtrl ************************/
+	/***************************************************************************/
+	/////////////////////////////////////////////////////////////////////////////
+	//////////////////////////      UploadCtrl      /////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////
+	// myApp.controller('UploadCtrl', function ($scope, fileReader) {
+	// 	console.log('Inside UploadController');
+	// 	console.log(fileReader);
+	// 	$scope.getFile = function () {
+	// 		$scope.progress = 0;
+	// 		fileReader.readAsDataURL($scope.file, $scope)
+	// 			.then(function(result) {
+	// 				$scope.imageSrc = result;
+	// 			});
+	// 	};
+
+	// 	$scope.$on("fileProgress", function(e, progress) {
+	// 		$scope.progress = progress.loaded / progress.total;
+	// 	});
+
+	// });
 
 	///////////////////////////// fileReaderFactory /////////////////////////////
-	myApp.factory('fileReader', function($q, $log) {
-		console.log('fileReader Factory initialized');
-		var fileReader = function ($q, $log) {
+	
+	// 	factory('fileReader', function($q, $log) {
+	// 	console.log('fileReader Factory initialized');
+	// 	var fileReader = function ($q, $log) {
  
-				var onLoad = function(reader, deferred, scope) {
-						return function () {
-								scope.$apply(function () {
-										deferred.resolve(reader.result);
-								});
-						};
-				};
+	// 			var onLoad = function(reader, deferred, scope) {
+	// 					return function () {
+	// 							scope.$apply(function () {
+	// 									deferred.resolve(reader.result);
+	// 							});
+	// 					};
+	// 			};
  
-				var onError = function (reader, deferred, scope) {
-						return function () {
-								scope.$apply(function () {
-										deferred.reject(reader.result);
-								});
-						};
-				};
+	// 			var onError = function (reader, deferred, scope) {
+	// 					return function () {
+	// 							scope.$apply(function () {
+	// 									deferred.reject(reader.result);
+	// 							});
+	// 					};
+	// 			};
  
-				var onProgress = function(reader, scope) {
-						return function (event) {
-								scope.$broadcast("fileProgress",
-										{
-												total: event.total,
-												loaded: event.loaded
-										});
-						};
-				};
+	// 			var onProgress = function(reader, scope) {
+	// 					return function (event) {
+	// 							scope.$broadcast("fileProgress",
+	// 									{
+	// 											total: event.total,
+	// 											loaded: event.loaded
+	// 									});
+	// 					};
+	// 			};
  
-				var getReader = function(deferred, scope) {
-						var reader = new FileReader();
-						reader.onload = onLoad(reader, deferred, scope);
-						reader.onerror = onError(reader, deferred, scope);
-						reader.onprogress = onProgress(reader, scope);
-						return reader;
-				};
+	// 			var getReader = function(deferred, scope) {
+	// 					var reader = new FileReader();
+	// 					reader.onload = onLoad(reader, deferred, scope);
+	// 					reader.onerror = onError(reader, deferred, scope);
+	// 					reader.onprogress = onProgress(reader, scope);
+	// 					return reader;
+	// 			};
  
-				var readAsDataURL = function (file, scope) {
-						var deferred = $q.defer();
+	// 			var readAsDataURL = function (file, scope) {
+	// 					var deferred = $q.defer();
 						 
-						var reader = getReader(deferred, scope);         
-						reader.readAsDataURL(file);
+	// 					var reader = getReader(deferred, scope);         
+	// 					reader.readAsDataURL(file);
 						 
-						return deferred.promise;
-				};
+	// 					return deferred.promise;
+	// 			};
  
-				return {
-						readAsDataUrl: readAsDataURL  
-				};
-		};
-	});
+	// 			return {
+	// 					readAsDataUrl: readAsDataURL  
+	// 			};
+	// 	};
+	// }).	/* End fileReader Factory */
