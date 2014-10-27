@@ -1,16 +1,19 @@
 var myApp = angular.module("myApp", [
 	'ngRoute',
-//	'templateControllers',
 	'myApp.directives.navTabBar',
 	'myApp.directives.titleMenu',
-	'myApp.directives.templateMenu'
+	'myApp.directives.templateMenu',
+	'myApp.directives.editTemplate'
 ]).
 
 /*****************************************************************************/
 
 	factory('myFactory', function() {
 		var factory = {};
-		var pageInfo = {title: 'Page Title'};
+		var pageInfo = {
+			title: 'Page Title',
+			template: 'noTemplateSelected'
+		};
 		var observerCallbacks = [];
 
 //		console.log('Inside myFactory');
@@ -46,6 +49,27 @@ var myApp = angular.module("myApp", [
 			notifyObservers();
 		};
 
+		factory.getTemplate = function() {
+			console.log('\tInside myFactory.getTemplate');
+			console.log('\t\tTemplate Choice: ', pageInfo.template);
+			return pageInfo.template;
+		};
+
+		factory.postTemplate = function(pgTemplate) {
+			console.log('\tIn my Factory posting template to...');
+			pageInfo.template = pgTemplate;
+			console.log('\t\tTemplate Choice: ', pageInfo.template);
+		};
+
+		var templateInfo = {
+			links: []
+		};
+
+		factory.pushLink = function() {
+																	 console.log('Inside Edit Template Factory');
+			templateInfo.links[0] = 'Hello';
+		};
+
 		return factory;
 	}).
 
@@ -78,49 +102,97 @@ var myApp = angular.module("myApp", [
 					templateUrl: 'partials/default-view.html'
 				}).
 				when('/banded', {
-					templateUrl: 'partials/banded-demo.html'
+					templateUrl: 'partials/previewTemplates/banded-demo.html'
 				}).
 				when('/banner-home', {
-					templateUrl: 'partials/banner-home-demo.html'
+					templateUrl: 'partials/previewTemplates/banner-home-demo.html'
 				}).
 				when('/blog', {
-					templateUrl: 'partials/blog-demo.html'
+					templateUrl: 'partials/previewTemplates/blog-demo.html'
 				}).
 				when('/contact', {
-					templateUrl: 'partials/contact-demo.html'
+					templateUrl: 'partials/previewTemplates/contact-demo.html'
 				}).
 				when('/feed', {
-					templateUrl: 'partials/feed-demo.html'
+					templateUrl: 'partials/previewTemplates/feed-demo.html'
 				}).
 				when('/grid', {
-					templateUrl: 'partials/grid-demo.html'
+					templateUrl: 'partials/previewTemplates/grid-demo.html'
 				}).
 				when('/marketing1', {
-					templateUrl: 'partials/marketing1-demo.html'
+					templateUrl: 'partials/previewTemplates/marketing1-demo.html'
 				}).
 				when('/marketing2', {
-					templateUrl: 'partials/marketing2-demo.html'
+					templateUrl: 'partials/previewTemplates/marketing2-demo.html'
 				}).
 				when('/orbit', {
-					templateUrl: 'partials/orbit-demo.html'
+					templateUrl: 'partials/previewTemplates/orbit-demo.html'
 				}).
 				when('/product', {
-					templateUrl: 'partials/prodcuct-demo.html'
+					templateUrl: 'partials/previewTemplates/prodcuct-demo.html'
 				}).
 				when('/realty', {
-					templateUrl: 'partials/realty-demo.html'
+					templateUrl: 'partials/previewTemplates/realty-demo.html'
 				}).
 				when('/side-bar', {
-					templateUrl: 'partials/side-bar-demo.html'
+					templateUrl: 'partials/previewTemplates/side-bar-demo.html'
 				}).
 				when('/so-boxy', {
-					templateUrl: 'partials/so-boxy-demo.html'
+					templateUrl: 'partials/previewTemplates/so-boxy-demo.html'
 				}).
 				when('/store', {
-					templateUrl: 'partials/store-demo.html'
+					templateUrl: 'partials/previewTemplates/store-demo.html'
 				}).
 				when('/workspace', {
-					templateUrl: 'partials/workspace-demo.html'
+					templateUrl: 'partials/previewTemplates/workspace-demo.html'
+				}).
+				when('/edit-banded', {
+					templateUrl: 'partials/editTemplates/edit-banded-template.html'
+				}).
+				when('/edit-banner-home', {
+					templateUrl: 'partials/editTemplates/edit-banner-home-template.html'
+				}).
+				when('/edit-blog', {
+					templateUrl: 'partials/editTemplates/edit-blog-template.html'
+				}).
+				when('/edit-contact', {
+					templateUrl: 'partials/editTemplates/edit-contact-template.html'
+				}).
+				when('/edit-feed', {
+					templateUrl: 'partials/editTemplates/edit-feed-template.html'
+				}).
+				when('/edit-grid', {
+					templateUrl: 'partials/editTemplates/edit-grid-template.html'
+				}).
+				when('/edit-marketing1', {
+					templateUrl: 'partials/editTemplates/edit-marketing1-template.html'
+				}).
+				when('/edit-marketing2', {
+					templateUrl: 'partials/editTemplates/edit-marketing2-template.html'
+				}).
+				when('/edit-orbit', {
+					templateUrl: 'partials/editTemplates/edit-orbit-template.html'
+				}).
+				when('/edit-product', {
+					templateUrl: 'partials/editTemplates/edit-prodcuct-template.html'
+				}).
+				when('/edit-realty', {
+					templateUrl: 'partials/editTemplates/edit-realty-template.html'
+				}).
+				when('/edit-side-bar', {
+					templateUrl: 'partials/editTemplates/edit-side-bar-template.html'
+				}).
+				when('/edit-so-boxy', {
+					templateUrl: 'partials/editTemplates/edit-so-boxy-template.html'
+				}).
+				when('/edit-store', {
+					templateUrl: 'partials/editTemplates/edit-store-template.html'
+				}).
+				when('/edit-workspace', {
+					templateUrl: 'partials/editTemplates/edit-workspace-template.html'
+				}).
+				when('/edit-noTemplateSelected', {
+					templateUrl: 'partials/editTemplates/no-template-selected.html'
 				}).
 				otherwise({
 					redirectTo: '/'

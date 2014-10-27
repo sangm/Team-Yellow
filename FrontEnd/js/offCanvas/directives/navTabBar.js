@@ -8,7 +8,7 @@ angular.module('myApp.directives.navTabBar', []).
 	}).
 
 	controller("TabCtrl", function($scope) {
-		$scope.tabValue = 2; // -1
+		$scope.tabValue = -1; // -1
 		$scope.setTab = function(setTab) {
 			if(setTab === $scope.tabValue){
 				$scope.tabValue = -1;
