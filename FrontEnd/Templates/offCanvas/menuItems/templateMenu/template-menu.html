@@ -7,7 +7,8 @@
 					You may view a template by hitting the view button next to the
 					the template you wish to preview. When you are done previewing the
 					template hit the menu icon to open the menu again.</p>
-			<form class="templateForm">
+			<form name="templateForm" class="templateForm" 
+						ng-controller='TemplateCtrl' ng-submit="changeTemplate()">
 				<legend>Template Style</legend>
 				<fieldset>
 					<banded-template-list-item></banded-template-list-item>
@@ -30,6 +31,9 @@
 						<input class="small-12 small-centered columns" type="submit"
 									 value="Submit" />
 					</span>
+
+<tt>Template Choice = {{templateChoice | json}}</tt>
+
 
 				</fieldset>
 			</form>

@@ -47,6 +47,11 @@
 			border-radius: 1000px;
 		}
 
+		.menuDropDown form fieldset .submit {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
 		.menuDropDown form fieldset a {
 			background-color: #69D2E7;
 			border-radius: 1000px;
@@ -60,3 +65,31 @@
 		}
 
 /****************************** Menu Drop Down *******************************/
+
+.addlink {
+	background-color: green;
+	margin-left: 10px;
+	border-radius: 1000px;
+}
+
+.apps-c
+ontainer {
+	border: 1px dashed blue;
+	padding-bottom: 20px;
+}
+
+.clear {
+	clear: both;
+}
+
+tg-dynamic-directive {
+	display: block;
+}
+
+.floatright {
+	float: right;
+}
+
+.floatleft {
+	float: left;
+}

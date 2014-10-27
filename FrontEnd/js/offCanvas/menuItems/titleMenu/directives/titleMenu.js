@@ -8,10 +8,10 @@ angular.module('myApp.directives.titleMenu', []).
 
 	controller("TitleCtrl", function($scope, myFactory) {
 		$scope.title = '';
-		$scope.changeTitle = function() {
+//		$scope.changeTitle = function() {
 	//			console.log('In title controller calling to change title to \'',
 	//										$scope.title,'\'');
 			myFactory.postTitle($scope.title);
 	//			console.log('\tReturned to Title Controller change title function');
-	};
-})
+//		};
+	})
