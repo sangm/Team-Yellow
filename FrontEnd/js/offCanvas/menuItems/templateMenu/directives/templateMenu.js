@@ -22,4 +22,19 @@ angular.module('myApp.directives.templateMenu', [
 			templateUrl: 
 				"Templates/offCanvas/menuItems/templateMenu/template-menu.html"
 		};
+	}).
+
+	controller('TemplateCtrl', function($scope, myFactory) {
+		$scope.templateChoice = '';
+
+
+
+		$scope.changeTemplate = function() {
+			console.log('Inside changeTemplate');
+			if($scope.templateChoice) {
+				console.log('\t' + 'Inside changeTemplate if statement');
+				myFactory.postTemplate($scope.templateChoice);
+			}
+		};
+
 	});
