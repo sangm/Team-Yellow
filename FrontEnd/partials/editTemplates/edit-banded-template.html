@@ -1,10 +1,10 @@
 <div ng-controller="EditTemplateCtrl">
 
-<div class="row">
-	<div class="large-12 column" ng-controller="UploadCtrl"> <!-- ng-controller="UploadController"> -->
+<!-- <div class="row">
+	<div class="large-12 column" ng-controller="UploadCtrl">
 			<form>
 						<input type="file" ng-file-select="onFileSelect($files)" >
-		<!-- <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
+		<input type="file" ng-file-select="onFileSelect($files)" multiple>
 			
 			 </form>
 			 <b>Preview:</b><br />
@@ -14,7 +14,7 @@
 			<progress value="{{progress}}"></progress>
 
 	</div>
-</div>
+</div> -->
 
 
 
@@ -27,23 +27,25 @@
 		</div>
 
 		<!-- Navigation Bar -->
-		<div class="large-8 columns">
-			<ul class="button-group right" ui-sortable ng-model="links">
-				<li ng-repeat="link in links"><a class="button">{{link}}</a></li>
-			</ul>
-		</div>
+		<div ng-controller="EditLinksCtrl">
+			<div class="large-8 columns">
+				<ul class="button-group right" ui-sortable ng-model="links">
+					<li ng-repeat="link in links"><a class="button">{{link}}</a></li>
+				</ul>
+			</div>
 
-		<!-- Add link -->
-		<div class="large-1 columns">
-			<a class="button addlink" ng-click="addLink()">+</a>
-		</div>
+			<!-- Add link -->
+			<div class="large-1 columns">
+				<a class="button addlink" ng-click="addLink()">+</a>
+			</div>
+		</div>	<!-- End EditLinksCtrl -->
 	</div>
 
 	 
 
 
 
-
+<!--====================== Double column content text ======================-->
 	<div class="row">
 		<div class="large-12 columns">
 			<img src="http://placehold.it/1000x400&text=[img]">
@@ -57,29 +59,77 @@
 		<div class="large-4 columns">
 			<img src="http://placehold.it/400x300&text=[img]">
 		</div>
-		<div class="large-8 columns">
-			<h4>This is a content section.</h4>
+		<div class="large-8 columns" ng-controller="ContentSplitCtrl">
+			<h4 class="left" ng-attr-contenteditable="{{editHeadingMode}}" 
+					ng-model="contentSplit.heading" 
+					style="display: inline-block; {{editHeadingBorder}}" />
+			<button class="tiny floatleft radius round" 
+							ng-click="toggleHeadingEditMode()" 
+							style="margin: 0 0 0 2em; padding: 1em;
+										 background-color: lime;">
+				<img src="img/fi-arrow-left.svg" style="height: 20px;">
+				<img src="img/fi-pencil.svg" style="height: 20px;">
+			</button>
+
 			<div class="row">
 				<div class="large-6 columns">
-					<p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+					<p class="left" ng-attr-contenteditable="{{editLeftMode}}"
+						 ng-model="contentSplit.left"
+						 style="display: inline-block; {{editLeftBorder}}" />
+					<button class="tiny floatleft radius round"
+								ng-click="toggleLeftEditMode()"
+								style="margin: 0 0 0 2em; padding: 1em; 
+											 background-color:lime;">
+						<img src="img/fi-arrow-up.svg" style="height: 20px;">
+						<img src="img/fi-pencil.svg" style="height: 20px;">
+					</button>
 				</div>
+
 				<div class="large-6 columns">
-					<p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+					<p class="left" ng-attr-contenteditable="{{editRightMode}}"
+						 ng-model="contentSplit.right"
+						 style="display: inline-block; {{editRightBorder}}" />
+					<button class="tiny floatleft radius round"
+								ng-click="toggleRightEditMode()"
+								style="margin: 0 0 0 2em; padding: 1em; 
+											 background-color:lime;">
+						<img src="img/fi-arrow-up.svg" style="height: 20px;">
+						<img src="img/fi-pencil.svg" style="height: 20px;">				</div>
+			</div>	<!-- End Split Contents columns into row -->
+
+		</div>	<!-- End Spit Contents Column -->
+
+	</div>	<!-- End Split contents and image row -->
+
+<!--==================== End double column content text ====================-->
 
 
-	 
 
-	<div class="row">
-		<div class="large-8 columns">
-			<h4>This is a content section.</h4>
 
-			<p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
+<!--====================== Single column content text ======================-->
+	<div class="row" style="margin-top: 50px;">
+		<div class="large-8 columns" ng-controller="ContentSingleCtrl">
+			<h4 ng-attr-contenteditable="{{editHeadingMode}}"
+					ng-model="contentSingle.heading"
+					style="{{editHeadingBorder}}" />
+			<button class="tiny radius round"
+							ng-click="toggleHeadingEditMode()"
+							style="padding: 1em; background-color: lime;">
+				<img src="img/fi-arrow-up.svg" style="height: 20px;">
+				<img src="img/fi-pencil.svg" style="height: 20px;">
+			</button>
 
-			<p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.</p>
+			<button class="tiny radius round"
+						ng-click="toggleContentEditMode()"
+						style="margin: 0 0 0 2em; padding: 1em 1em; 
+									 background-color:lime;">
+				<img src="img/fi-arrow-down.svg" style="height: 20px;">
+				<img src="img/fi-pencil.svg" style="height: 20px;">
+			</button>
+
+			<p class="left" ng-attr-contenteditable="{{editContentMode}}"
+				 ng-model="contentSingle.content"
+				 style="display: inline-block; {{editContentBorder}}" />
 
 		</div>
 		<div class="large-4 columns">
