@@ -8,6 +8,8 @@ class RedisTest(unittest.TestCase):
         # Should set up a test redis database
         self.redis_server = redis.StrictRedis('localhost')
         self.redis_server.flushall()
+        # self.publish = self.redis_server.pubsub()
+        # self.publish.subscribe('DomainChannel')
         redis_insert_domain('test1')
         redis_insert_domain('test2')
         redis_insert_domain('test3')
@@ -24,6 +26,8 @@ class RedisTest(unittest.TestCase):
     def test_insert_domain_does_not_allow_duplicates(self):
         # test1 is already in the database
         self.assertFalse(redis_insert_domain('test1'))
+    def test_insert_domain_publishes_to_channel_domains(self):
+        pass
 
 if __name__ == '__main__':
     unittest.main()
