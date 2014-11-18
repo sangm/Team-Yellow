@@ -8,11 +8,11 @@
         <link rel=stylesheet href="css/main.css">
     </head>
     <body ng-app="app">
-        <div class="off-canvas-wrap" data-offcanvas>
+        <div class="off-canvas-wrap" data-offcanvas ng-controller="MainController">
             <div class="inner-wrap">
                 <nav class="tab-bar">
                     <section class="left-small">
-                        <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+                        <a class="left-off-canvas-toggle menu-icon"><span></span></a>
                     </section>
                     <section class="middle tab-bar-section">
                         <h1 class="title">Marvelous</h1>
@@ -24,9 +24,29 @@
                 <aside class="left-off-canvas-menu">
                     <ul class="off-canvas-list">
                         <li><label>Add On Options</label></li>
-                        <li><a href="#">Option 1</a></li>
-                        <li><a href="#">Option 2</a></li>
-                        <li><a href="#">Option 3</a></li>
+                        <li>
+                            <form class="business-form">
+                                <fieldset>
+                                    <legend>Bussiness Information</legend>
+                                        <label>Business Name
+                                            <input type="text" ng-model="businessName" ng-change="changeBusinessInfo('businessName', businessName)" placeholder="Name">
+                                        </label>
+                                        <label>Business Email
+                                            <input type="text" ng-model="businessEmail" ng-change="changeBusinessInfo('businessEmail', businessEmail)" placeholder="Email">
+                                        </label>
+                                        <label>Business Phone Number
+                                            <input type="text" ng-model="phoneNumber" ng-change="changeBusinessInfo('phoneNumber', phoneNumber)" placeholder="Phone Number">
+                                        </label>
+                                        <label>Business Domain Name
+                                            <input type="text" ng-model="domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name">
+                                        </label>
+                                        <a href="#" class="button">Register Domain</a>
+                                    </fieldset>
+                            </form>
+                        </li>
+                        <li><a href="#/so-boxy">So-Boxy</a></li>
+                        <li><a href="#/banded">Banded</a></li>
+                        <li><a href="#/contact">Contact</a></li>
                     </ul>
                 </aside>
                 <aside class="right-off-canvas-menu">
