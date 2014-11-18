@@ -9,19 +9,12 @@ angular.module('app')
             })
            .when('/so-boxy', {
                 templateUrl: 'partials/so-boxy.html',
-                controller: 'TemplateController'
             })
             .when('/banded', {
-                templateUrl: 'prtials/banded.html',
-                controller: 'TemplateController'
+                templateUrl: 'partials/banded.html',
             })
             .when('/contact', {
                 templateUrl: 'partials/contact.html',
-                controller: 'TemplateController'
-            })
-            .when('/add', {
-                templateUrl: 'partials/add.html',
-                controller: 'AddController'
             })
             .otherwise({redirectTo: '/'})
     });
@@ -37,10 +30,6 @@ angular.module('app')
             $scope.businessInfo = TemplateService.getBusinessInfo();
         };
     })
-    .controller('AddController', function($scope) {
-    })
-    .controller('TemplateController', function($scope, TemplateService) {
-    });
 
 angular.module('app')
     .service('TemplateService', function() {

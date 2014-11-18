@@ -15,7 +15,7 @@ def redis_insert_domain(domain):
         redis_server.lpush(redis_domains, domain)
         redis_server.publish('DomainChannel', domain)
         return redis_server.hmset(domain, {'ServerName': domain,
-                                              'Directory': domain_directory})
+                                           'Directory' : domain_directory})
 def redis_delete_domain(domain):
     result = redis_server.hdel(domain, 'ServerName')
     result |= redis_server.hdel(domain, 'Directory')
