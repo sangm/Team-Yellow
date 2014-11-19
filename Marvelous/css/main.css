@@ -1,0 +1,13 @@
+html {
+    height: 150%;
+}
+.inner-wrap, .off-canvas-wrap {
+    height: 100%;
+}
+
+.full {
+    width: 100%;
+}
+.main-section {
+    padding-top: 5%;
+}
