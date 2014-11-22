@@ -1,3 +1,7 @@
+import os
+
+NGINX_WRITE_DIRECTORY = '/home/sangm/templates/'
+
 def convert(directory, subdomain):
     template = """
 server {{
@@ -23,12 +27,26 @@ server {{
 }}
     """
     return template.format(directory, subdomain)
-def write_subdomain(directory, subdomain):
+def write_subdomain(template_directory, nginx_directory, subdomain):
+    directory = "%s/%s" % (template_directory, subdomain)
+    nginx_directory = "%s/%s" % (nginx_directory, subdomain)
     template = convert(directory, subdomain)
-    with open(directory, 'w') as f:
+    with open(nginx_directory, 'w+') as f:
         f.write(template)
-def publish_handler(domain):
-    write_subdomain(domain)
+def write_template(template_directory, subdomain):
+    # Make a directory at template_directory
+    html = 'Hello World {0}'.format(subdomain)
+    path = "%s/%s" % (template_directory, subdomain)
+    directory = "%s/index.html" % (path)
+    try:
+        os.makedirs(path)
+    except OSError as e:
+        if e.errno != errno.EEXIST:
+            raise
+        else:
+            print '\nDirectory %s already exists.' % path
+    with open(directory, 'w') as f:
+        f.write(html)
 def register_handler():
     import redis
     import time
@@ -40,8 +58,9 @@ def register_handler():
         if message:
             subdomain = r.hgetall(message['data'])
             if subdomain:
-                write_subdomain(subdomain['Directory'], subdomain['ServerName'])
-                print 'Directory: {0} - Server: {1} Written'.format(subdomain['Directory'],
+                write_template(subdomain['Template'], subdomain['ServerName'])
+                write_subdomain(subdomain['Template'], subdomain['Nginx'], subdomain['ServerName'])
+                print 'Template: {0} - Nginx: {1} - Server: {2} Written'.format(subdomain['Template'], subdomain['Nginx'],
                                                                     subdomain['ServerName'])
         time.sleep(0.001)
 if __name__ == '__main__':
