@@ -18,4 +18,9 @@ angular.module('app')
                 domainName: this.domainName
             };
         };
+    })
+
+    .service('BusinessServie', function($resource) {
+	return resource("http://localhost:5000");
     });
+

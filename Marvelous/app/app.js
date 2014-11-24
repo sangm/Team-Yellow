@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute', 'ngTouch', 'slick']);
+angular.module('app', ['ngRoute', 'ngTouch', 'ngResource', 'slick']);
 
 angular.module('app')
     .config(function ($routeProvider) {
