@@ -20,7 +20,23 @@ angular.module('app')
         };
     })
 
-    .service('BusinessServie', function($resource) {
+    .service('BusinessService', function($resource) {
+
+        this.sendInfo = function(){
+            //is this how to correctly utilize the endpoint? Am i using $resource correctly?//
+        var info = $resource('api.ares.sangm.net/api/routes.py', {
+
+                    json: JSON.stringify({
+                    businessName: TemplateService.name,
+                    businessEmail: TemplateService.email,
+                    phoneNumber: TemplateService.phoneNumber,
+                    domainName: TemplateService.domainName,
+                    })
+                });
+        info.$save()};
+    
+
+
 	return resource("http://localhost:5000");
     });
 
