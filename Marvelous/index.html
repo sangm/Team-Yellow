@@ -44,7 +44,8 @@
                                         <label>Business Domain Name
                                             <input type="text" ng-model="domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name">
                                         </label>
-                                        <a href="#" data-reveal-id="myModal" class="button">Register Domain</a>
+                                         <!-- below use of ng-click is probably not right, will need help working it out, sorry--> 
+                                        <a href="#" data-reveal-id="myModal" class="button" ng-click="postInfo()">Register Domain</a>
                                         <div id="myModal" class="reveal-modal" data-reveal>
                                             <h2>Your website should be live at {{domainName}}</h2>
                                             <p class="lead">Please contact us at 254 fak enum</p>
