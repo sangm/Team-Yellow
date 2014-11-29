@@ -1,14 +1,14 @@
+from api import app
 from flask import render_template
 from jinja2 import Environment, PackageLoader, FileSystemLoader
 
 def convert(templateEnv, directory, subdomain):
-    template = templateEnv.get_template('/home/sangm/ares.sangm.net/api/api/utils/templates/nginx')
+    template = templateEnv.get_template(app.config['NGINX_TEMPLATE'])
     return template.render(nginxDirectory=directory, serverName=subdomain)
-# NEED TO TEST THIS< THIS IS WHERE YOU LEFT OFF
 def write_subdomain(templateEnv, template_directory, nginx_directory, subdomain):
-    directory = "%s/%s" % (template_directory, subdomain)
-    nginx_directory = "%s/%s" % (nginx_directory, subdomain)
-    template = convert(templateEnv, directory, subdomain)
+    server_name = "%s/%s" % (template_directory, subdomain)
+    template = convert(templateEnv, server_name, subdomain)
+    nginx_directory = "%s/%s.conf" % (nginx_directory, subdomain)
     with open(nginx_directory, 'w+') as f:
         f.write(template)
 def register_handler():
@@ -28,8 +28,8 @@ def register_handler():
         if message:
             subdomain = r.hgetall(message['data'])
             if subdomain:
-                write_subdomain(templateEnv, subdomain['Template'], subdomain['Nginx'], subdomain['ServerName'])
-                # Where you restart nginx
+		print "%s : %s : %s" % (app.config['TEMPLATE_DIRECTORY'], app.config['NGINX_DIRECTORY'], subdomain['ServerName'])
+		write_subdomain(templateEnv, app.config['TEMPLATE_DIRECTORY'], app.config['NGINX_DIRECTORY'], subdomain['ServerName'])
                 subprocess.call("./restart_nginx.sh", shell=True)
         time.sleep(0.001)
 if __name__ == '__main__':
