@@ -3,9 +3,6 @@ from api import app
 from utils import redis_get_domains, redis_insert_domain, get_template
 from flask import jsonify, request, render_template
 
-VALID_KEYS = app.config['VALID_KEYS']
-TEMPLATE_DIRECTORY = app.config['TEMPLATE_DIRECTORY']
-
 @app.route('/')
 def index():
     return "Private API for Marvelous\n"
@@ -20,11 +17,18 @@ def insert_domain(domain):
         return "Could not insert domain: %s" % domain
 @app.route('/register_domain/<domain>', methods=['POST'])
 def register_template(domain):
+    VALID_KEYS = app.config['VALID_KEYS']
+    TEMPLATE_DIRECTORY = app.config['TEMPLATE_DIRECTORY']
+    VALID_TEMPLATES = app.config['VALID_TEMPLATES']
+    
     business_info = request.get_json()
-    print business_info
+    if business_info == None:
+        return "JSON with keys: [%s] needed\n" % (' '.join(VALID_KEYS))
     for key in VALID_KEYS:
         if key not in business_info:
-            return "Need to have the right keys"
+            return "JSON with keys: [%s] needed\n" % (' '.join([_ for _ in VALID_KEYS if _ not in business_info]))
+    if business_info['template'] not in VALID_TEMPLATES:
+        return "Valid Templates: [%s] Received: [%s]\n" % (' '.join(VALID_TEMPLATES), business_info['template'])        
     if redis_insert_domain(domain):
         template = render_template(business_info['template'] + '.html', info=business_info)
         path = "%s/%s" % (TEMPLATE_DIRECTORY, domain)
@@ -37,6 +41,6 @@ def register_template(domain):
         else:
             with open(index, 'w') as f:
                 f.write(template)
-        return "Domain %s created" % domain
+        return "Domain %s created\n" % domain
     else:
-        return "Domain %s already exists" % domain
+        return "Domain %s already exists\n" % domain

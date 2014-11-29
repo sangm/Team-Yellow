@@ -1,3 +1,0 @@
-import subprocess
-
-subprocess.call("restart_nginx.sh", shell=True)
