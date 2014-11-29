@@ -20,7 +20,7 @@ angular.module('app')
         };
     })
 
-    .service('BusinessServie', function($resource) {
-	return resource("http://localhost:5000");
+    .service('BusinessService', function($resource) {
+	return $resource();
     });
 

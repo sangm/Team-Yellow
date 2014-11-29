@@ -3,9 +3,12 @@ from api import app
 from utils import redis_get_domains, redis_insert_domain, get_template
 from flask import jsonify, request, render_template
 
-VALID_KEYS = ['businessName', 'businessEmail', 'template', 'phoneNumber']
-TEMPLATE_DIRECTORY = '/home/sangm/templates'
+VALID_KEYS = app.config['VALID_KEYS']
+TEMPLATE_DIRECTORY = app.config['TEMPLATE_DIRECTORY']
 
+@app.route('/')
+def index():
+    return "Private API for Marvelous\n"
 @app.route('/domains')
 def get_domains():
     return jsonify(domains=redis_get_domains())
@@ -18,6 +21,7 @@ def insert_domain(domain):
 @app.route('/register_domain/<domain>', methods=['POST'])
 def register_template(domain):
     business_info = request.get_json()
+    print business_info
     for key in VALID_KEYS:
         if key not in business_info:
             return "Need to have the right keys"
