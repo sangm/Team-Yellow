@@ -1,0 +1,13 @@
+server {
+  listen                *:80;
+  server_name           {{serverName}}.sangm.io;
+
+  index  index.html index.htm index.php;
+
+  access_log            /var/log/nginx/sangm.io.access.log;
+  error_log             /var/log/nginx/sangm.io.error.log;
+
+  location / {
+    root      {{nginxDirectory}};
+  }
+}
