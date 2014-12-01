@@ -1,6 +1,7 @@
 angular.module('app')
-    .controller('MainController', function($scope, TemplateService, BusinessService, $resource, $http) {
+    .controller('MainController', function($scope, TemplateService, BusinessService, $resource) {
         $scope.businessInfo = TemplateService.getBusinessInfo();
+	$scope.hostname = $scope.businessInfo.hostname;
         $scope.changeBussinessInfo = function(type, info) {
             if (type == 'businessName') { TemplateService.setBusinessName(info); }
             else if (type == 'businessEmail') TemplateService.setBusinessEmail(info);
