@@ -3,7 +3,7 @@
     <li class="name">
         <h1>
             <a href="#">
-                {{businessName}}
+                {{businessInfo.businessName}}
             </a>
         </h1>
     </li>
@@ -51,7 +51,6 @@
                 <li><a href="#">See all →</a></li>
             </ul>
         </li>
-    </ul>
 </section>
 </nav>
 
@@ -95,24 +94,10 @@
                     </form>
                 </div>
             </section>
-            <section class="section">
-                <h5 class="title"><a href="#panel2">Specific Person</a></h5>
-                <div class="content" data-slug="panel2">
-                    <ul class="large-block-grid-5">
-                        <li><a href="/cdn-cgi/l/email-protection#600d010c20130512050e0914194e02034e120502"><img src="http://placehold.it/200x200&text=[person]">Mal Reynolds</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#d8a2b7bd98abbdaabdb6b1aca1f6babbf6aabdba"><img src="http://placehold.it/200x200&text=[person]">Zoe Washburne</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#7c161d0512193c0f190e1912150805521e1f520e191e"><img src="http://placehold.it/200x200&text=[person]">Jayne Cobb</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#15717a7655667067707b7c616c3b77763b677077"><img src="http://placehold.it/200x200&text=[person]">Simon Tam</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#600b090c0c190f15170914080d190d090e0420130512050e0914194e02034e120502"><img src="http://placehold.it/200x200&text=[person]">River Tam</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#3f535a5e5950514b575a4856515b7f4c5a4d5a51564b46115d5c114d5a5d"><img src="http://placehold.it/200x200&text=[person]">Hoban Washburne</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#5f3d3030341f2c3a2d3a31362b26713d3c712d3a3d"><img src="http://placehold.it/200x200&text=[person]">Shepherd Book</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#c1aaada4a481b2a4b3a4afa8b5b8efa3a2efb3a4a3"><img src="http://placehold.it/200x200&text=[person]">Kaywinnet Lee Fry</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#0f66616e7d6e4f687a66636b216c60627f216e6363"><img src="http://placehold.it/200x200&text=[person]">Inarra Serra</a></li>
-                    </ul>
-                </div>
-            </section>
+                
+              </div>
         </div>
-    </div>
+    
 
 
 
@@ -128,8 +113,8 @@
         <a href="" data-reveal-id="mapModal">View Map</a>
         </p>
         <p>
-        123 Awesome St.<br/>
-        Barsoom, MA 95155
+        <a href="#" class="small button">{{businessInfo.phoneNumber}}</a><br/>
+        <a href="#" class="small button">{{businessInfo.businessEmail}}</a>
         </p>
     </div>
 
