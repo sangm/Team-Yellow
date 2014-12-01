@@ -11,6 +11,20 @@ html {
 .main-section {
     padding-top: 5%;
 }
+.myPanel {
+    
+    margin:8;
+    background: #515253;
+    @include panel();
+    
+}
+.button
+{
+	background:#1e2958;
+}
+.left-off-canvas-menu{
+	background:#515253;
+}
 
 .cards {
     list-style: none;
@@ -26,6 +40,8 @@ html {
 }
 .card-header {
     color: white;
+    font-size: 2em;
+    line-height: 3;
 }
 .pick {
     height: 20%;
@@ -37,7 +53,3 @@ html {
 .pick-slide {
 }
 .fill-out {
-    
-}
-.register {
-}

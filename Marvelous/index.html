@@ -1,5 +1,6 @@
 <!DOCTYPE>
 <html>
+    <title>Marvelous</title>
     <head>
         <meta name="viewport" content="initial-scale=1, width=device-width"/>
         <link rel=stylesheet href="bower_components/foundation/css/normalize.css">
@@ -16,39 +17,37 @@
                         <a class="left-off-canvas-toggle menu-icon"><span></span></a>
                     </section>
                     <section class="middle tab-bar-section">
-                        <h1 class="title">Marvelous</h1>
-                    </section>
-                    <section class="right-small">
-                        <a class="right-off-canvas-toggle menu-icon" href="#"><span></span></a>
+                        <a href="/#"><h1 class="title">Marvelous</h1></a>
                     </section>
                 </nav>
                 <aside class="left-off-canvas-menu">
                     <ul class="off-canvas-list">
-                        <li><label>Add On Options</label></li>
+                        <li><label>Select a template</label></li>
                         <li><a href="#/so-boxy">So-Boxy</a></li>
                         <li><a href="#/banded">Banded</a></li>
-                        <li><a href="#/contact">Contact</a></li>
+                        <li><a href="#/contact">Contact Us</a></li>
                         <li>
                             <form class="business-form">
                                 <fieldset>
                                     <legend>Bussiness Information</legend>
                                         <label>Business Name
-                                            <input type="text" ng-model="businessName" ng-change="changeBusinessInfo('businessName', businessName)" placeholder="Name">
+                                            <input type="text" ng-model="businessInfo.businessName" ng-change="changeBusinessInfo('businessName', businessInfo.businessName)" placeholder="Name">
                                         </label>
                                         <label>Business Email
-                                            <input type="text" ng-model="businessEmail" ng-change="changeBusinessInfo('businessEmail', businessEmail)" placeholder="Email">
+                                            <input type="text" ng-model="businessInfo.businessEmail" ng-change="changeBusinessInfo('businessEmail', businessEmail)" placeholder="Email">
                                         </label>
                                         <label>Business Phone Number
-                                            <input type="text" ng-model="phoneNumber" ng-change="changeBusinessInfo('phoneNumber', phoneNumber)" placeholder="Phone Number">
+                                            <input type="text" ng-model="businessInfo.phoneNumber" ng-change="changeBusinessInfo('phoneNumber', phoneNumber)" placeholder="Phone Number">
                                         </label>
                                         <label>Business Domain Name
-                                            <input type="text" ng-model="domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name">
+                                            <input type="text" ng-model="businessInfo.domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name">
                                         </label>
-                                        <a href="#" data-reveal-id="myModal" class="button">Register Domain</a>
+                                        <a href="" data-reveal-id="myModal" ng-click="registerDomain(businessInfo)" class="button">Register Domain</a>
                                         <div id="myModal" class="reveal-modal" data-reveal>
-                                            <h2>Your website should be live at {{domainName}}</h2>
-                                            <p class="lead">Please contact us at 254 fak enum</p>
-                                            <p>Our designers/engineers are available 24/7</p>
+                                            <h1 class="text-center" style="background-color: #1e2958; color: white; padding-right: 2em;">Congratulations!</h1>
+                                            <h3>Your {{buisnessInfo.buisnessName}}  website should be live at {{businessInfo.domainName}}.{{businessInfo.hostname}}</h3>
+                                            <p class="lead">If your website is not live, give us a call at <a href="tel:+19078543082">(512)555-1234</a> or E-Mail us at <a href="mailto:admin@sangm.io">admin@{{businessInfo.hostname}}</a>.</p>
+                                            <p>Our developers are available 24/7 for your support.</p>
                                             <a class="close-reveal-modal">&#215;</a>
                                         </div>
                                     </fieldset>
@@ -57,16 +56,27 @@
                     </ul>
                 </aside>
                 <section class="main-section">
-                    <div ng-view=""></div>
+                    <!--<div ng-view=""></div>-->
+                    <div class="myPanel">
+                        <center><img src="http://i3.photobucket.com/albums/y90/Sam56/marvLogo_zpsebecb0ef.png"></center>
+                        <h3 align="center" style="color:#a9abae"><b>Welcome to Marvelous, the turn key website creator.<b></h3>
+                        <p style="color:#a9abae"> Marvelous provides an easy to use interface for instant website creation. Select a template, and provide your business information. Within seconds, your website will be viewable online.  </p>
+        </div>
+
                 </section>
 
                 <a class="exit-off-canvas"></a>
           </div>
         </div>
+
+      
+
+
                     
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-touch/angular-touch.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/slick.js/slick/slick.js"></script>
         <script src="bower_components/angular-slick/dist/slick.js"></script>
