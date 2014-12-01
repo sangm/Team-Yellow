@@ -1,15 +1,15 @@
 angular.module('app')
     .service('TemplateService', function() {
-        this.name = 'Business Name';
-        this.email = 'Business Email';
-        this.phoneNumber = 'Business Phone#';
-        this.domainName = 'Domain Name';
+        this.name = '';
+        this.email = '';
+        this.phoneNumber = '';
+        this.domainName = '';
 
-        this.setBusinessName = function(name)   { this.name = name; };
-        this.setBusinesEmail = function(email)  { this.email = email; };
-        this.setPhoneNumber  = function(number) { this.phoneNumber = number; };
-        this.setDomainName   = function(domain) { this.domainName  = domain; };
-
+        this.setBusinessName = function(name)     { this.name = name; };
+        this.setBusinesEmail = function(email)    { this.email = email; };
+        this.setPhoneNumber  = function(number)   { this.phoneNumber = number; };
+        this.setDomainName   = function(domain)   { this.domainName  = domain; };
+	
         this.getBusinessInfo = function() {
             return {
                 businessName: this.name,
