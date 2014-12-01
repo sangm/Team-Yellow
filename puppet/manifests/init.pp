@@ -5,11 +5,13 @@ node default {
   class { 'nginx': }
   include redis
 
-  nginx::resource::upstream { 'api.sangm': 
+  $host_name = "sangm.io"
+
+  nginx::resource::upstream { 'api.marvelous': 
     members => [ 'localhost:5000']
   }
-  nginx::resource::vhost { 'sangm.io': www_root => "/var/www/ares.sangm.net/Marvelous" }
-  nginx::resource::vhost { 'api.sangm.io': proxy => 'http://api.sangm' }
+  nginx::resource::vhost { "${host_name}": www_root => "/var/www/${host_name}/Marvelous" }
+  nginx::resource::vhost { "api.${host_name}": proxy => 'http://api.marvelous' }
 
   file { '/var/www':
     ensure => "directory",
@@ -18,14 +20,14 @@ node default {
     mode   => "755"
   }
 
-  file { '/etc/nginx/sites-enabled/subdomain.sangm.io.conf':
+  file { '/etc/nginx/sites-enabled/subdomain.marvelous.conf':
     ensure  => present,
     owner   => "root",
     group   => "root",
     mode    => "644",
     content => "server {
   listen                *:80;
-  server_name           ~^(?<domain>.+)\.sangm.io$;
+  server_name           ~^(?<domain>.+)\.$host_name\$;
 
   index  index.html index.htm index.php;
 
@@ -38,7 +40,7 @@ node default {
 }"
   }
 
-  vcsrepo { "/var/www/ares.sangm.net": 
+  vcsrepo { "/var/www/${host_name}": 
     ensure   => present,
     provider => git,
     source   => "https://github.com/sangm/Team-Yellow.git",

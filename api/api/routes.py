@@ -40,7 +40,7 @@ def register_template(domain):
             raise OSError("Directory %s already exists." % path)
         else:
             with open(index, 'w') as f:
-                f.write(template)
+                f.write(unicode(template.encode('utf8'), errors='ignore'))
         return "Domain %s created\n" % domain
     else:
         return "Domain %s already exists\n" % domain
