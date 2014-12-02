@@ -1,25 +1,82 @@
-<div class="row cards">
-    <div class="large-3 large-offset-1 columns card">
-	<div class="pick card-header" style="padding-top: 22px;">Pick a Template</div>
-	<slick class="pick-slide" autoplay=true fade=true autoplay-speed=2000 css-ease=linear slide=div>
-	    <div><img src="/img/banded.png"></img>Banded Theme</div>
-	    <div><img src="/img/contact.png"></img>Contact Theme</div>
-	    <div><img src="/img/so-boxy.png"></img>So-Boxy Theme</div>
-	</slick>
-    </div>
-    <div class="large-3 large-offset-1 columns card">
-	<div class="pick card-header" style="padding-top: 10px">Fill out Business Information</div>
-	<div class="fill-out">
-	</div>
-    </div>
-    <div class="large-3 columns card">
-	<div class="pick card-header" style="padding-top: 22px;">Register Domain</div>
-	<div class="register">
-	</div>
-    </div>
-</div>
+<html>
 
-<!--
+<body>
+
+    <div class="myh1">
+        <center><b>WEBSITES :</b> EFFORTLESS</center>
+    </div>
+
+
+    <div class="row cards center">
+        <div class="large-3 large columns card">
+        	<img src="http://i.imgur.com/tvIk2wt.png">
+        	<!--<slick class="pick-slide" autoplay=true fade=true autoplay-speed=2000 css-ease=linear slide=div>
+        	    <div><img src="/img/banded.png"></img>Banded Theme</div>
+        	    <div><img src="/img/contact.png"></img>Contact Theme</div>
+        	    <div><img src="/img/so-boxy.png"></img>So-Boxy Theme</div>
+        	</slick>-->
+            </div>
+        <div class="large-3 large-offset-1 columns card">
+        	<img src="http://i.imgur.com/GDjxm4v.png">
+            	<div class="fill-out">
+            	</div>
+            </div>
+        <div class="large-3 large columns card">
+        	<img src="http://i.imgur.com/hnvfhbx.png">
+        	<div class="register">
+        	</div>
+        </div>
+    </div>
+
+
+    <center>
+         <ul class="button-group [radius round]" style="padding-top:50">
+          <li><a href="" data-reveal-id="contactModal" class="button">Contact</a></li>
+          <li><a href="" data-reveal-id="aboutModal"class="button">About Us</a></li>
+        </ul>
+        
+     </center>
+</body>
+
+
+<!--MODAL DECLARATIONS-->
+                <div id="contactModal" class="reveal-modal" data-reveal>
+                    <h1 class="text-center" style="background-color: #29292D; color: white; padding-right: 2em;">Contact</h1>
+                    <form>
+                            <div class="row collapse">
+                                <div class="large-2 columns">
+                                    <label class="inline">Your Name</label>
+                                </div>
+                                <div class="large-10 columns">
+                                    <input type="text" id="yourName" placeholder="Jane Smith">
+                                </div>
+                            </div>
+                            <div class="row collapse">
+                                <div class="large-2 columns">
+                                    <label class="inline"> Your Email</label>
+                                </div>
+                                <div class="large-10 columns">
+                                    <input type="text" id="yourEmail" placeholder="jane@smithco.com">
+                                </div>
+                            </div>
+                            <label>What's up?</label>
+                            <textarea rows="4"></textarea>
+                            <button type="submit" class="radius button">Submit</button>
+                    </form> 
+                      <a href='#' class="close-reveal-modal">&#215;</a>
+
+                 
+                </div>
+
+                 <div id="aboutModal" class="reveal-modal" data-reveal>
+                    <h1 class="text-center" style="background-color: #29292D; color: white; padding-right: 2em;">About Us</h1>
+                    <p>With years of combined experience in web development, our team has introduced Marvelous - an easy to use, all in one website creation and hosting application that can be operated entirely from a browser. Creation, customization, and hosting - faster and easier than ever before.</p>
+                    <a href='#' class="close-reveal-modal" >&#215;</a> 
+                </div>
+
+
+
+<!-- Whats this for? saving it for now... -Sam
 <div class="row" style="height: 50%; width: 50%;">
     <slick class="slider-for" as-nav-for="slider-nav" slides-to-show=1 slides-toscroll=1 arrows=false fade=true>
         <div><h3>1</h3></div>
@@ -41,3 +98,5 @@
     </slick>
 </div>
 -->
+</body>
+</html>
