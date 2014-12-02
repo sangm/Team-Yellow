@@ -1,6 +1,7 @@
 
 angular.module('app')
     .controller('MainController', function($scope, TemplateService, BusinessService, DomainService, $resource) {
+	$scope.domainExist = false;
         $scope.businessInfo = TemplateService.getBusinessInfo();
 	$scope.hostname = $scope.businessInfo.hostname;
         $scope.changeBussinessInfo = function(type, info) {
@@ -18,7 +19,10 @@ angular.module('app')
 		alert ("Fill out the forms!");
 	    }
 	}
-	var resource = $resource('http://api.sangm.io/domains');
-	console.log(resource.get());
-	console.log($scope.hostname);
+	$scope.$watch('businessInfo.domainName', function(domain) {
+	    if (domain !== "")
+		DomainService.get({domain:domain}).$promise.then(function(result) {
+		    $scope.domainExist = result.result;
+		});
+	})
     })

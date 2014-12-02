@@ -9,6 +9,9 @@ def index():
 @app.route('/domains')
 def get_domains():
     return jsonify(domains=redis_get_domains())
+@app.route('/domain/<domain>')
+def exist_domain(domain):
+    return jsonify(result = domain in redis_get_domains())
 @app.route('/domain/<domain>', methods=['PUT'])
 def insert_domain(domain):
     if redis_insert_domain(domain):

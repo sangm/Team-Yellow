@@ -28,7 +28,7 @@ angular.module('app')
 	return $resource();
     })
 
-    .service('DomainService', function($resource) {
-	return $resource('http://api.sangm.io/domains');
+    .factory('DomainService', function($resource) {
+	return $resource('http://api.sangm.io/domain/:domain');
     });
 
