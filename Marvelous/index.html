@@ -28,22 +28,26 @@
                         <li><a href="#/banded">Banded</a></li>
                         <li><a href="#/contact">Contact</a></li>
                         <li>
-                            <form class="business-form">
+                            <form class="business-form" name="businessForm">
                                 <fieldset>
                                     <legend>Bussiness Information</legend>
                                         <label>Business Name
-                                            <input type="text" ng-model="businessInfo.businessName" ng-change="changeBusinessInfo('businessName', businessInfo.businessName)" placeholder="Name">
+                                            <input type="text" ng-model="businessInfo.businessName" ng-change="changeBusinessInfo('businessName', businessInfo.businessName)" placeholder="Name" name="businessName" required>
+					    <span class="error" ng-show="businessForm.businessName.$error.required">Business Name is Required!</span>
                                         </label>
                                         <label>Business Email
-                                            <input type="text" ng-model="businessInfo.businessEmail" ng-change="changeBusinessInfo('businessEmail', businessEmail)" placeholder="Email">
+                                            <input type="text" ng-model="businessInfo.businessEmail" ng-change="changeBusinessInfo('businessEmail', businessEmail)" placeholder="Email" name="businessEmail" required>
+					    <span class="error" ng-show="businessForm.businessEmail.$error.required">Business Email is Required!</span>
                                         </label>
                                         <label>Business Phone Number
-                                            <input type="text" ng-model="businessInfo.phoneNumber" ng-change="changeBusinessInfo('phoneNumber', phoneNumber)" placeholder="Phone Number">
+                                            <input type="text" ng-model="businessInfo.phoneNumber" ng-change="changeBusinessInfo('phoneNumber', phoneNumber)" placeholder="Phone Number" name="phoneNumber" required>
+					    <span class="error" ng-show="businessForm.phoneNumber.$error.required">Phone Number is Required!</span>
                                         </label>
                                         <label>Business Domain Name
-                                            <input type="text" ng-model="businessInfo.domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name">
+                                            <input type="text" ng-model="businessInfo.domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name" name="domainName" required>
+					    <span class="error" ng-show="businessForm.domainName.$error.required">Domain Name is Required!</span>
                                         </label>
-                                        <a href="" data-reveal-id="myModal" ng-click="registerDomain(businessInfo)" class="button">Register Domain</a>
+                                        <a href="" ng-class="{disabled: businessForm.$valid === false}" data-reveal-id="myModal" ng-click="registerDomain(businessInfo, businessForm.$valid)" class="button register">Register Domain</a>
                                         <div id="myModal" class="reveal-modal" data-reveal>
                                             <h1 class="text-center" style="background-color: rgba(52, 152, 219, 1.0); color: white; padding-right: 2em;">Congratulations!</h1>
                                             <h3>Your {{buisnessInfo.buisnessName}}  website should be live at {{businessInfo.domainName}}.{{businessInfo.hostname}}</h3>
@@ -59,7 +63,6 @@
                 <section class="main-section">
                     <div ng-view=""></div>
                 </section>
-
                 <a class="exit-off-canvas"></a>
           </div>
         </div>
@@ -76,7 +79,7 @@
         <script src="app/controllers.js"></script>
         <script src="app/services.js"></script>
         <script>$(document).foundation();</script>
-        <script>
-        </script>
+	<script>
+	</script>
     </body>
 </html>
