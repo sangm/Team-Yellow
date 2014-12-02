@@ -1,16 +1,30 @@
 angular.module('app')
-    .controller('MainController', function($scope, TemplateService, BusinessService, $resource) {
+    .controller('MainController', function($scope, TemplateService, BusinessService, DomainService, $resource) {
         $scope.businessInfo = TemplateService.getBusinessInfo();
 	$scope.hostname = $scope.businessInfo.hostname;
         $scope.changeBussinessInfo = function(type, info) {
-            if (type == 'businessName') { TemplateService.setBusinessName(info); }
+            if (type == 'businessName')       TemplateService.setBusinessName(info);
             else if (type == 'businessEmail') TemplateService.setBusinessEmail(info);
             else if (type == 'phoneNumber')   TemplateService.setPhoneNumber(info);
             else if (type == 'domainName')    TemplateService.setDomainName(info);
             $scope.businessInfo = TemplateService.getBusinessInfo();
         };
-	var domain = $resource('/');
-	var test = $resource('/domains');
-	console.log(domain.get());
-	console.log(test.get());
+	$scope.registerDomain = function(businessInfo) {
+	    console.log(businessInfo);
+	    // Check if values are null
+	    // and hostname
+            //Isn't working at the moment, not sure why
+	    if (businessInfo.businessName === "")
+		alert("Business Name field is empty!")
+	    else if (businessInfo.phoneNumber === "")
+		alert("Phone number field is empty!")
+            else if (businessInfo.domainName === "")
+		alert("Domain name field is empty!")
+	    else if (businessInfo.businessEmail === "")
+                alert("Email field is emtpy!")
+	    console.log("Hmmm"); //What is this for?	
+	}
+	var resource = $resource('http://api.sangm.io/domains');
+	console.log(resource.get());
+	console.log($scope.hostname);
     })
