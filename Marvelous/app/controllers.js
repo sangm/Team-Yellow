@@ -20,9 +20,14 @@ angular.module('app')
 	    }
 	}
 	$scope.$watch('businessInfo.domainName', function(domain) {
-	    if (domain !== "")
+	    if (domain !== undefined || domain !== "") {
+		console.log(domain);
 		DomainService.get({domain:domain}).$promise.then(function(result) {
 		    $scope.domainExist = result.result;
 		});
+	    }
+	    else
+		$scope.domainExist = true;
+	    console.log($scope.domainExist);
 	})
     })
