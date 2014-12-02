@@ -1,10 +1,13 @@
+'use strict';
+
 angular.module('app')
     .service('TemplateService', function() {
         this.name = '';
         this.email = '';
         this.phoneNumber = '';
         this.domainName = '';
-
+	this.hostname = "sangm.io";
+	
         this.setBusinessName = function(name)     { this.name = name; };
         this.setBusinesEmail = function(email)    { this.email = email; };
         this.setPhoneNumber  = function(number)   { this.phoneNumber = number; };
@@ -15,12 +18,17 @@ angular.module('app')
                 businessName: this.name,
                 businessEmail: this.email,
                 phoneNumber: this.phoneNumber,
-                domainName: this.domainName
+                domainName: this.domainName,
+		hostname: this.hostname
             };
         };
     })
 
     .service('BusinessService', function($resource) {
 	return $resource();
+    })
+
+    .service('DomainService', function($resource) {
+	return $resource('http://api.sangm.io/domains');
     });
 
