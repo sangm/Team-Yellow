@@ -18,22 +18,27 @@ def insert_domain(domain):
         return "Inserted domain: %s" % domain
     else:
         return "Could not insert domain: %s" % domain
-@app.route('/register_domain/<domain>', methods=['POST'])
+@app.route('/register_domain/<domain>', methods=['POST','OPTIONS'])
 def register_template(domain):
+    import json
     VALID_KEYS = app.config['VALID_KEYS']
     TEMPLATE_DIRECTORY = app.config['TEMPLATE_DIRECTORY']
     VALID_TEMPLATES = app.config['VALID_TEMPLATES']
+
+    business_info = request.get_json() if request.get_json() != None else request.form
     
-    business_info = request.get_json()
     if business_info == None:
         return "JSON with keys: [%s] needed\n" % (' '.join(VALID_KEYS))
     for key in VALID_KEYS:
+        print key, 
         if key not in business_info:
             return "JSON with keys: [%s] needed\n" % (' '.join([_ for _ in VALID_KEYS if _ not in business_info]))
     if business_info['template'] not in VALID_TEMPLATES:
         return "Valid Templates: [%s] Received: [%s]\n" % (' '.join(VALID_TEMPLATES), business_info['template'])        
     if redis_insert_domain(domain):
+        
         template = render_template(business_info['template'] + '.html', info=business_info)
+        print template
         path = "%s/%s" % (TEMPLATE_DIRECTORY, domain)
         index  = "%s/index.html" % (path)
         print index

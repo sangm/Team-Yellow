@@ -46,9 +46,10 @@
                                         <label>Business Domain Name
                                             <input type="text" ng-model="businessInfo.domainName" ng-change="changeBusiness('domainName', domainName)" placeholder="Domain Name" name="domainName" required>
 					    <span class="error" ng-show="businessForm.domainName.$error.required">Domain Name is Required!</span>
-					    <span class="error" ng-show="domainExist == false && businessInfo.domainName != ''">Domain Name already exists</span>
+					    <span class="error" ng-show="domainExist == true && businessInfo.domainName != ''">{{domainExist}} Domain Name already exists</span>
                                         </label>
-                                        <a href="" ng-class="{disabled: businessForm.$valid === false}" data-reveal-id="myModal" ng-click="registerDomain(businessInfo, businessForm.$valid)" class="button register">Register Domain</a>
+                                        <a href="" ng-disabled="businessForm.$valid == false && domainExist == true" ng-class="{disabled: businessForm.$valid === false && domainExist === false}"
+					   data-reveal-id="myModal" ng-click="registerDomain(businessInfo, businessForm.$valid)" class="button register">Register Domain</a>
                                         <div id="myModal" class="reveal-modal" data-reveal>
                                             <h1 class="text-center" style="background-color: rgba(52, 152, 219, 1.0); color: white; padding-right: 2em;">Congratulations!</h1>
                                             <h3>Your {{buisnessInfo.buisnessName}}  website should be live at {{businessInfo.domainName}}.{{businessInfo.hostname}}</h3>

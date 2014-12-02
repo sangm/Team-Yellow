@@ -1,6 +1,8 @@
 
 angular.module('app')
-    .controller('MainController', function($scope, TemplateService, BusinessService, DomainService, $resource) {
+    .controller('MainController', function($scope, $location, TemplateService, BusinessService, DomainService, $resource, $http) {
+
+		
 	$scope.domainExist = false;
         $scope.businessInfo = TemplateService.getBusinessInfo();
 	$scope.hostname = $scope.businessInfo.hostname;
@@ -11,23 +13,33 @@ angular.module('app')
             else if (type == 'domainName')    TemplateService.setDomainName(info);
             $scope.businessInfo = TemplateService.getBusinessInfo();
         };
-	$scope.registerDomain = function(businessInfo, form_valid) {
+	$scope.registerDomain = function(info, form_valid) {
 	    if (form_valid) {
-		
-	    }
-	    else {
-		alert ("Fill out the forms!");
+		var path = $location.path();
+		info.template = path.substring(1, path.length);
+		BusinessService.register({domain: info.domainName}, {
+		    businessName: info.businessName,
+		    businessEmail: info.businessEmail,
+		    phoneNumber: info.phoneNumber,
+		    template: info.template,
+		    
+		}).$promise.then(function(result) {
+		    console.log(info.template);
+		    console.log(result);
+		});
+	
 	    }
 	}
 	$scope.$watch('businessInfo.domainName', function(domain) {
 	    if (domain !== undefined || domain !== "") {
-		console.log(domain);
 		DomainService.get({domain:domain}).$promise.then(function(result) {
+		    console.log("domain: " + domain + " result: ");
+		    console.log(result);
 		    $scope.domainExist = result.result;
 		});
+		
 	    }
 	    else
-		$scope.domainExist = true;
-	    console.log($scope.domainExist);
+		$scope.domainExist = false;
 	})
     })
