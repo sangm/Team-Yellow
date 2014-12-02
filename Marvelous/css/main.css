@@ -4,9 +4,36 @@ html {
 
 body {
     font-family: 'Roboto';
+    background-image: url("http://i.imgur.com/VtFMTNU.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    
+    
 }
 
-.inner-wrap, .off-canvas-wrap {
+.myh1{
+    @include h1();
+    font-family: 'Raleway',sans-serif;
+    margin-top: 30px;
+    font-weight: 100;
+    text-transform: ;
+    margin-bottom: 30px;
+    font-size: 60px;
+    color: white;
+    
+}
+.button{
+    background-color: #29292d
+}
+.inner-wrap{
+    
+    height: 100%;
+
+}
+
+.off-canvas-wrap {
     height: 100%;
 }
 
@@ -25,17 +52,25 @@ body {
 
 .card {
     height: 100%;
-    border-radius: .5em;
-    box-shadow: 0 1px 2px #aaa;
-    padding: 0;
+    border-radius: ;
+    box-shadow:;
+    margin: 0;
     text-align: center;
 }
 
-.card-header {
-    color: white;
+.myPanel{
+    @include panel();
+    color: #29292D;
     line-height: 22px;
     height: 66px !important;
     font-size: 22px;
+}
+.card-header {
+    color: #29292D;
+    line-height: 22px;
+    height: 66px !important;
+    font-size: 22px;
+
 }
 
 .pick {
