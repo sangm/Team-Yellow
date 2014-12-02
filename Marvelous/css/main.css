@@ -1,6 +1,11 @@
 html {
     height: 150%;
 }
+
+body {
+    font-family: 'Roboto';
+}
+
 .inner-wrap, .off-canvas-wrap {
     height: 100%;
 }
