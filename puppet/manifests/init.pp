@@ -5,7 +5,8 @@ node default {
   class { 'nginx': }
   include redis
 
-  $host_name = "sangm.io"
+  $github_src = "https://github.com/sangm/Marvelous.git"
+  $host_name = "marvelous.sangm.io"
 
   nginx::resource::upstream { 'api.marvelous': 
     members => [ 'localhost:5000']
@@ -27,12 +28,12 @@ node default {
     mode    => "644",
     content => "server {
   listen                *:80;
-  server_name           ~^(?<domain>.+)\.$host_name\$;
+  server_name           ~^(?<domain>.+)\.${host_name}\$;
 
   index  index.html index.htm index.php;
 
-  access_log            /var/log/nginx/sangm.io.access.log;
-  error_log             /var/log/nginx/sangm.io.error.log;
+  access_log            /var/log/nginx/${host_name}.access.log;
+  error_log             /var/log/nginx/${host_name}.error.log;
 
   location / {
     root      /var/www/templates/\$domain;
@@ -43,8 +44,8 @@ node default {
   vcsrepo { "/var/www/${host_name}": 
     ensure   => present,
     provider => git,
-    source   => "https://github.com/sangm/Team-Yellow.git",
-    revision => "recovery",
+    source   => $github_src,
+    revision => "master",
     owner    => "root",
     group    => "root",
   }  
