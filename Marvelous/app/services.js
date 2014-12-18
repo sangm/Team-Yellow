@@ -1,5 +1,8 @@
 'use strict';
 
+var hostname = "marvelous.sangm.io";
+var apiUrl = "http://api." + hostname + "/";
+
 angular.module('app')
     .service('TemplateService', function() {
         this.name = '';
@@ -7,7 +10,7 @@ angular.module('app')
         this.phoneNumber = '';
         this.domainName = '';
 	this.template = '';
-	this.hostname = "sangm.io";
+	this.hostname = hostname;
 
         this.setBusinessName = function(name)     { this.name = name; };
         this.setBusinesEmail = function(email)    { this.email = email; };
@@ -27,7 +30,7 @@ angular.module('app')
     })
 
     .factory('BusinessService', function($resource) {
-	return $resource("http://api.sangm.io/register_domain/:domain", {
+	return $resource(apiUrl + "register_domain/:domain", {
 	    domain: "@domain"
 	}, {
 	    register: {
@@ -46,6 +49,6 @@ angular.module('app')
     })
 
     .factory('DomainService', function($resource) {
-	return $resource('http://api.sangm.io/domain/:domain');
+	return $resource(apiUrl + 'domain/:domain');
     });
 
