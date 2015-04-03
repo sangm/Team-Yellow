@@ -17,8 +17,20 @@ FORGE
       maestrodev-wget (>= 1.1.0)
       puppetlabs-gcc (>= 0.0.3)
 
+PATH
+  remote: ./custom_modules/marvelous_nginx
+  specs:
+    marvelous_nginx (0.0.1)
+
+PATH
+  remote: ./custom_modules/marvelous_packages
+  specs:
+    marvelous_packages (0.0.1)
+
 DEPENDENCIES
   jfryman-nginx (>= 0)
+  marvelous_nginx (>= 0)
+  marvelous_packages (>= 0)
   puppetlabs-vcsrepo (>= 0)
   thomasvandoren-redis (>= 0)
 

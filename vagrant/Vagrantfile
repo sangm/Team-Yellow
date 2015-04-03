@@ -1,3 +1,6 @@
+host_name = "marvelous.sangm.io"
+git_src = "https://github.com/sangm/marvelous.git"
+
 Vagrant.configure(2) do |config|
   config.vm.box = "puppetlabs/centos-7.0-64-puppet"
 
@@ -11,5 +14,9 @@ Vagrant.configure(2) do |config|
     puppet.manifests_path = "manifests"
     puppet.manifest_file = "default.pp"
     puppet.module_path = "modules"
+    puppet.facter = {
+        "host" => host_name,
+        "git"  => git_src
+    }
   end
 end
