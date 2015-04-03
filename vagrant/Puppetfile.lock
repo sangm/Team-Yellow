@@ -1,6 +1,9 @@
 FORGE
   remote: https://forge.puppetlabs.com
   specs:
+    ajcrowe-supervisord (0.5.2)
+      puppetlabs-concat (< 2.0.0, >= 1.0.0)
+      puppetlabs-stdlib (>= 4.4.0)
     jfryman-nginx (0.2.5)
       puppetlabs-apt (< 2.0.0, >= 1.0.0)
       puppetlabs-concat (< 2.0.0, >= 1.1.1)
@@ -42,6 +45,7 @@ PATH
     marvelous_website (0.0.1)
 
 DEPENDENCIES
+  ajcrowe-supervisord (>= 0)
   jfryman-nginx (>= 0)
   marvelous_nginx (>= 0)
   marvelous_packages (>= 0)

@@ -8,25 +8,13 @@ class marvelous_website ($host, $git) {
         group    => "nginx",
     }  
 
-    python::virtualenv { "/var/www/${host}/api/env" :
-        ensure       => present,
-        version      => 'system',
-        requirements => "/var/www/${host}/api/requirements.py",
-        systempkgs   => true,
-        distribute   => false,
-        owner        => 'nginx',
-        group        => 'nginx',
-        timeout      => 0,
+    python::requirements { "/var/www/${host}/api/requirements.py" : }
+    class { 'supervisord':
+        install_pip => true,
     }
 
-    python::gunicorn { 'vhost' :
-        ensure      => present,
-        virtualenv  => "/var/www/www/${host}/api/env",
-        mode        => 'wsgi',
-        dir         => "/var/www/${host}/api/app",
-        bind        => 'localhost:5000',
-        appmodule   => 'app:app',
-        timeout     => 30,
-        template    => 'python/gunicorn.erb',
+    supervisord::program { 'flask-api':
+        command     => 'gunicorn api:app -b 127.0.0.1:5000 --daemon -w 2',
+        directory   => "/var/www/${host}/api",
     }
 }
