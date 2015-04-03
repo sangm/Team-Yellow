@@ -1,0 +1,9 @@
+forge "https://forge.puppetlabs.com"
+
+mod 'jfryman/nginx'
+mod 'thomasvandoren/redis'
+mod 'puppetlabs/vcsrepo'
+mod 'puppetlabs/firewall'
+
+mod 'marvelous_nginx', :path => './custom_modules/marvelous_nginx'
+mod 'marvelous_packages', :path => './custom_modules/marvelous_packages'

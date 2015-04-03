@@ -1,1 +1,5 @@
 *.pyc
+vagrant/modules/
+vagrant/.vagrant/
+vagrant/.tmp/
+vagrant/.librarian/

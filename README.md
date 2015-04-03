@@ -10,3 +10,7 @@ Install the following puppet modules
 + puppet module install thomasvandoren-redis [redis]
 + puppet module install puppetlabs-vcsrepo [vcsrepo]
 + EPEL Repository [epel-release]
+
+## Vagrant Plugins
++ vagrant plugin install vagrant-librarian-puppet
+
