@@ -4,22 +4,14 @@ node default {
     stage { 'repos': }
     stage { 'marv_nginx': }
 
-    class { 'marvelous_packages': 
-        stage => 'repos'
-    }
+    class { 'marvelous_packages': stage => 'repos' }
 
-    class { 'marvelous_nginx':
-        host => "${host}",
-    }
+    class { 'marvelous_nginx': host => $host }
 
-    vcsrepo { "/var/www/${host}": 
-        ensure   => present,
-        provider => git,
-        source   => $git,
-        revision => "master",
-        owner    => "nginx",
-        group    => "nginx",
-    }  
+    class { 'marvelous_website': 
+        host => $host,
+        git  => $git
+    }
 
     Stage['repos'] -> Stage['main']
 }

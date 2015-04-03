@@ -18,6 +18,14 @@ FORGE
       maestrodev-wget (>= 1.1.0)
       puppetlabs-gcc (>= 0.0.3)
 
+GIT
+  remote: https://github.com/stankevich/puppet-python.git
+  ref: master
+  sha: cf744a4120990d798597ee11b61c471976fa847a
+  specs:
+    stankevich-puppet-python (1.8.0)
+      puppetlabs-stdlib (>= 4.0.0)
+
 PATH
   remote: ./custom_modules/marvelous_nginx
   specs:
@@ -28,11 +36,18 @@ PATH
   specs:
     marvelous_packages (0.0.1)
 
+PATH
+  remote: ./custom_modules/marvelous_website
+  specs:
+    marvelous_website (0.0.1)
+
 DEPENDENCIES
   jfryman-nginx (>= 0)
   marvelous_nginx (>= 0)
   marvelous_packages (>= 0)
+  marvelous_website (>= 0)
   puppetlabs-firewall (>= 0)
   puppetlabs-vcsrepo (>= 0)
+  stankevich-puppet-python (>= 0)
   thomasvandoren-redis (>= 0)
 
