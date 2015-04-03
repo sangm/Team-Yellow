@@ -9,7 +9,7 @@ class marvelous_nginx ($host) {
     }
 
     nginx::resource::vhost { "api.${host}": 
-        proxy => 'http://api.marvelous' 
+        proxy => "localhost:5000"
     }
 
     nginx::resource::vhost { 'subdomain':
