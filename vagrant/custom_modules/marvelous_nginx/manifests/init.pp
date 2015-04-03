@@ -5,16 +5,17 @@ class marvelous_nginx ($host) {
     }
 
     nginx::resource::vhost { "${host}": 
-        www_root => "/var/www/${host}/Marvelous" 
+        www_root => "/var/www/${host}/Marvelous",
+        server_name => ["localhost", $host]
     }
 
     nginx::resource::vhost { "api.${host}": 
-        proxy => "localhost:5000"
+        proxy => "http://localhost:5000"
     }
 
     nginx::resource::vhost { 'subdomain':
        www_root => '/var/www/templates/\$domain',
-       server_name => ["~^(?<domain>.+)\.${host}\\$"],
+       server_name => ["~^(?<domain>.+)\\.${host}\\$"],
        access_log => "/var/log/nginx/${host}.access.log",
        error_log  => "/var/log/nginx/${host}.error.log"
 
@@ -26,6 +27,13 @@ class marvelous_nginx ($host) {
         owner  => "nginx",
         group  => "nginx",
         mode   => "755"
+    }
+
+    firewall { '001 allow http and https access':
+        port   => [80, 443],
+        proto  => tcp,
+        action => accept,
+        before => undef
     }
 }
 
